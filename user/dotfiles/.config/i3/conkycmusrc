@@ -1,0 +1,23 @@
+#!/bin/sh
+if [ ! -x /usr/bin/cmus-remote ]; then
+    echo "cmus is not installed."
+    exit
+fi
+
+if [ -e ~/.cmus/socket ]; then
+
+    ARTIST=$( cmus-remote -Q 2>/dev/null | grep -m 1 artist | cut -d " " -f 3- )
+    TITLE=$( cmus-remote -Q 2>/dev/null | grep -m 1 title | cut -d " " -f 3- )
+
+    if [ -z "$ARTIST" ]; then
+        ARTIST="Unknown Artist"
+    fi
+
+    if [ -z "$TITLE" ]; then
+        TITLE="Unknown track"
+    fi
+
+    echo "${ARTIST} - ${TITLE}"
+else
+    echo "Player is stoped"
+fi

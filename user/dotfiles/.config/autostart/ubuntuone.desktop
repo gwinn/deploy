@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Ubuntu One
+GenericName=File Synchronizer
+Comment=Sync your files across computers and to the web
+Exec=ubuntuone-control-panel-qt --minimized --with-icon
+Terminal=false
+Type=Application
+Icon=ubuntu-logo
+Categories=Network;FileTransfer;
+StartupNotify=false

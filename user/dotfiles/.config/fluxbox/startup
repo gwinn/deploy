@@ -1,0 +1,69 @@
+
+#!/bin/sh
+#
+# fluxbox startup-script:
+#
+# Lines starting with a '#' are ignored.
+
+# Change your keymap:
+#xmodmap "/home/gwinn/.Xmodmap"
+
+# Applications you want to run with fluxbox.
+# MAKE SURE THAT APPS THAT KEEP RUNNING HAVE AN ''&'' AT THE END.
+#
+# unclutter -idle 2 &
+# wmnd &
+# wmsmixer -w &
+# idesk &
+
+if [ -x /usr/libexec/notification-daemon ]; then
+    notification-daemon &
+fi
+
+if [[ "$HOSTNAME" -eq "darkstar" ]]; then
+    syndaemon -i 1.0 -d &
+fi
+
+if [ -x /usr/bin/transmission-daemon ]; then
+    transmission-daemon --pid-file /tmp/transmission.pid -T -w $HOME/upload
+fi
+
+if [ -x /etc/rc.d/rc.networkmanager ]; then
+    nm-applet &
+fi
+
+if [ -x /etc/rc.d/rc.wicd ]; then
+    wicd-client -t &
+fi
+
+if [ -e /usr/bin/alsa-tray ]; then
+    alsa-tray &
+fi
+
+if [ -e /usr/bin/perWindowLayoutD ]; then
+    perWindowLayoutD &
+fi
+
+if [ -e /usr/bin/batti ]; then
+    batti &
+fi
+
+if [ -e ~/.dropbox-dist/dropbox ]; then
+    ~/.dropbox-dist/dropbox &
+fi
+
+if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
+   eval $(dbus-launch --sh-syntax --exit-with-session)
+fi
+
+if [ -x /usr/bin/compton ]; then
+    compton --dbus -f -m 0.9 -O 0.4 -I 0.4 -C -c -b &
+fi
+
+# And last but not least we start fluxbox.
+# Because it is the last app you have to run it with ''exec'' before it.
+
+exec fluxbox
+
+# or if you want to keep a log:
+# exec fluxbox -log "/home/gwinn/.fluxbox/log"

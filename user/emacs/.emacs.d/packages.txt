@@ -1,0 +1,16 @@
+auto-complete
+auto-dictionary
+auto-indent-mode
+color-theme
+css-mode
+ctags
+erlang
+fuzzy
+haskell-mode
+json
+lua-mode
+markdown-mode
+php-mode
+ruby-mode
+popup
+yaml-mode

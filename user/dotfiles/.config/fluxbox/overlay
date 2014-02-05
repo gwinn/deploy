@@ -1,0 +1,10 @@
+! The following line will prevent styles from setting the background.
+
+menu.title.font: Calibri-12
+toolbar.clock.font: Calibri-12
+toolbar.workspace.font: Calibri-12
+*font: Calibri-12
+
+background: aspect
+background.pixmap: /home/gwinn/.local/share/backgrounds/galaxy.jpg
+

@@ -1,0 +1,5 @@
+export PAGER=most
+export EDITOR=vim
+export PATH=$PATH:$HOME/.local/bin
+export MPLAYER_HOME=$HOME/.config/mplayer
+

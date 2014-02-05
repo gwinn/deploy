@@ -1,0 +1,5 @@
+\set HISTFILE ~/.cache/psql_history
+\set HISTSIZE 2000
+\set PROMPT1 '(%n@%M:%>) [%/] > '
+\encoding unicode
+

@@ -1,0 +1,12 @@
+
+setxkbmap -layout "us,ru" -option "grp:alt_shift_toggle,grp_led:scroll,terminate:ctrl_alt_bksp,compose:ralt" -model pc105
+hsetroot -fill ~/.config/background/burningautumn.jpg &
+tint2 -c ~/.config/tint2/tint2rc &
+perWindowLayoutD &
+volti &
+u1sdtool --start
+
+#xcompmgr &
+#conky -c ~/.config/conky/conky.conf &
+#feh  --bg-scale '/home/gwinn/Pictures/Wallpappers/burningautumn.jpg' &
+

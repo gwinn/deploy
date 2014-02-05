@@ -1,0 +1,9 @@
+[auth]
+bit.prefix = bitbucket.org
+bit.username = gwinn
+bit.schemes = ssh http https
+
+[ui]
+username = gwinn
+ssh = ssh -C
+

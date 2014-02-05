@@ -1,0 +1,35 @@
+include '/home/gwinn/.local/share/themes/modernflatdark/gtk-2.0/gtkrc'
+gtk-icon-theme-name = "ACYL"
+
+style "user-font"
+{
+    font_name = "Play 9"
+}
+
+style "theme-default"
+{
+    GtkStatusbar::shadow_type = none
+}
+
+style "pcmanfm-sidebar"
+{
+    base[NORMAL] = @bg_color
+}
+
+widget "FmMainWin.*.FmPlacesView" style "pcmanfm-sidebar"
+widget_class "*" style "user-font"
+
+gtk-font-name="Play 9"
+gtk-cursor-theme-name="Bluecurve"
+gtk-cursor-theme-size=16
+gtk-toolbar-style=GTK_TOOLBAR_ICONS
+gtk-toolbar-icon-size=GTK_ICON_SIZE_SMALL_TOOLBAR
+gtk-button-images=0
+gtk-menu-images=0
+gtk-enable-event-sounds=1
+gtk-enable-input-feedback-sounds=1
+gtk-xft-antialias=1
+gtk-xft-hinting=1
+gtk-xft-hintstyle="slight"
+gtk-xft-rgba="rgb"
+

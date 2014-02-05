@@ -1,0 +1,6 @@
+[default]
+City = Rostov-na-Donu
+Forecast = True
+id = URRR
+St = RU
+Murl = http://weather.noaa.gov/pub/data/forecasts/taf/stations/%id%.TXT

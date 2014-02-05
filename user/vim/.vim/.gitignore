@@ -1,0 +1,4 @@
+
+.netrwhist
+.service/*
+!.service/.gitkeep
