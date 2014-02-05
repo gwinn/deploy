@@ -1,4 +1,4 @@
-config-ubuntu
+Deploy
 =============
 
-Configuration files for ubuntu based environment
+Configuration files for linux environment
