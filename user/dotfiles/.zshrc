@@ -13,9 +13,11 @@ alias rm='rm -rf'
 alias cp='cp -r'
 alias df='df -h -x tmpfs -x devtmpfs -x rootfs'
 alias phs='php -S localhost:8888 -c /etc/php5/fpm/php.ini'
-alias symfony='php -d memory_limit=512M app/console'
+alias symfony='php -d memory_limit=1024M app/console'
 alias mcabber="mcabber -f $HOME/.config/mcabber/mcabberrc"
 alias irssi="irssi --config=$HOME/.config/irssi/config --home=$HOME/.config/irssi"
+
+export TERM=xterm-256color
 
 # Set to this to use case-sensitive completion
 CASE_SENSITIVE="true"
