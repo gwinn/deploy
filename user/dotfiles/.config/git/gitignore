@@ -1,11 +1,12 @@
-ompiled source #
-###################
+# Compiled source #
+# ##################
 *.com
 *.class
 *.dll
 *.exe
 *.o
 *.so
+*.la
 
 # Packages #
 # ############
@@ -45,3 +46,5 @@ Thumbs.db
 .settings
 .project
 .buildpath
+*.anjuta*
+
