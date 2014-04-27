@@ -1,9 +1,9 @@
-include '/home/gwinn/.local/share/themes/Zukitwo/gtk-2.0/gtkrc'
+include '/home/gwinn/.local/share/themes/Numix/gtk-2.0/gtkrc'
 gtk-icon-theme-name = "Numix-Circle"
 
 style "user-font"
 {
-    font_name = "Droid Sans 10"
+    font_name = "Droid Sans 9"
 }
 
 style "theme-default"
@@ -11,7 +11,7 @@ style "theme-default"
     GtkStatusbar::shadow_type = none
 }
 
-gtk-font-name="Droid Sans 10"
+gtk-font-name="Droid Sans 9"
 gtk-cursor-theme-name="Adwaita"
 gtk-cursor-theme-size=16
 gtk-toolbar-style=GTK_TOOLBAR_ICONS
@@ -22,6 +22,6 @@ gtk-enable-event-sounds=1
 gtk-enable-input-feedback-sounds=1
 gtk-xft-antialias=1
 gtk-xft-hinting=1
-gtk-xft-hintstyle="slight"
+gtk-xft-hintstyle="full"
 gtk-xft-rgba="rgb"
 
