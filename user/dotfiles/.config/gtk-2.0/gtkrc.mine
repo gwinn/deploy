@@ -3,10 +3,15 @@ gtk-icon-theme-name = "Numix-Circle"
 
 style "user-font"
 {
-    font_name = "Play 9"
+    font_name = "Droid Sans 9"
 }
 
-gtk-font-name="Play 9"
+style "theme-default"
+{
+    GtkStatusbar::shadow_type = none
+}
+
+gtk-font-name="Droid Sans 9"
 gtk-cursor-theme-name="Adwaita"
 gtk-cursor-theme-size=16
 gtk-toolbar-style=GTK_TOOLBAR_ICONS
@@ -17,6 +22,6 @@ gtk-enable-event-sounds=1
 gtk-enable-input-feedback-sounds=1
 gtk-xft-antialias=1
 gtk-xft-hinting=1
-gtk-xft-hintstyle="slight"
+gtk-xft-hintstyle="full"
 gtk-xft-rgba="rgb"
 
