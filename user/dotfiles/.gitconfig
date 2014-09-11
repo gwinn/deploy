@@ -4,8 +4,6 @@
 [core]
     editor = vim
     excludesfile = /home/gwinn/.config/git/gitignore
-[push]
-    default = simple
 [http]
     postBuffer = 209715200
 [help]
@@ -48,3 +46,5 @@
     added = green bold
     changed = blue bold
     untracked = red
+[push]
+    default = simple

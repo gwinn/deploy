@@ -1,0 +1,4 @@
+#!/bin/bash
+
+openssl rand -base64 32 | head -c 20 ; echo
+

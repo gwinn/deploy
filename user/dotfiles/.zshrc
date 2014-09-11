@@ -5,7 +5,7 @@ ZSH=$HOME/.config/zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="gallifrey"
+ZSH_THEME="simple"
 
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
@@ -13,9 +13,10 @@ alias rm='rm -rf'
 alias cp='cp -r'
 alias df='df -h -x tmpfs -x devtmpfs -x rootfs'
 alias phs='php -S localhost:8888 -c /etc/php5/fpm/php.ini'
-alias symfony='php -d memory_limit=1024M app/console'
+alias symfony='php app/console'
 alias mcabber="mcabber -f $HOME/.config/mcabber/mcabberrc"
 alias irssi="irssi --config=$HOME/.config/irssi/config --home=$HOME/.config/irssi"
+alias vim="vim -u $HOME/.local/share/vim/vimrc"
 
 export TERM=xterm-256color
 
@@ -43,6 +44,7 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(composer debian git git-remote-branch github postgres rbenv rake ruby symfony2)
 
 source $ZSH/oh-my-zsh.sh
+#source ~/.profile
 
 HISTFILE=$HOME/.cache/zsh_history
 HISTSIZE=1000
