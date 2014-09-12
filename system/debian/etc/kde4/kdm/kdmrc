@@ -6,6 +6,7 @@ PidFile=/var/run/kdm.pid
 ReserveServers=:1,:2,:3
 ServerVTs=-7
 StaticServers=:0
+DmrcDir=.config
 
 [Shutdown]
 BootManager=None
