@@ -11,11 +11,11 @@
 [github]
     user = gwinn
 [diff]
-    tool = vimdiff
+    tool = vimdiff -u /home/gwinn/.local/share/vim/vimrc
 [difftool]
     prompt = false
 [merge]
-    tool = vimdiff
+    tool = vimdiff -u /home/gwinn/.local/share/vim/vimrc
 [mergetool]
     keepBackup = false
 [alias]
