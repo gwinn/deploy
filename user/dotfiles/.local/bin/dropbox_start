@@ -1,0 +1,3 @@
+#!/bin/bash
+
+HOME=$HOME/.local/share/dropbox /usr/bin/dropbox start -i 2>&1
