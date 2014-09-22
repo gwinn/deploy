@@ -8,6 +8,7 @@ export PATH=$PATH:$HOME/.local/bin
 export MPLAYER_HOME=$HOME/.config/mplayer
 export GIMP2_DIRECTORY=$HOME/.local/share/gimp-2.8
 export COMPOSER_HOME=$HOME/.cache/composer
+export GNUPGHOME=$HOME/.config/gnupg
 
 # MYSQL
 export MYSQL_HISTFILE=$HOME/.cache/mysql_history
