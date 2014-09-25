@@ -1,5 +1,9 @@
 \set HISTFILE ~/.cache/psql_history
 \set HISTSIZE 2000
 \set PROMPT1 '(%n@%M:%>) [%/] > '
+\set ECHO_HIDDEN ON
+\set COMP_KEYWORD_CASE upper
+\pset null 'NULL'
+\timing
 \encoding unicode
 
