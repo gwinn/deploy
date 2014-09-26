@@ -6,11 +6,13 @@ export TERM=xterm-256color
 # RC
 export COMPOSER_HOME=$HOME/.cache/composer
 export GNUPGHOME=$HOME/.config/gnupg
-export GEMRC=$HOME/.config/gem/gemrc
+export GEMRC=$HOME/.local/lib/ruby/gem/gemrc
 export GEM_HOME=$HOME/.local/lib/ruby/gem
 export GEM_SPEC_CACHE=$GEM_HOME/specs
 export MYSQL_HISTFILE=$HOME/.cache/mysql_history
 export MYSQL_HOME=$HOME/.config/mysql
+export GTK_RC_FILES=$GTK_RC_FILES:$HOME/.config/gtk/gtkrc
+export GTK2_RC_FILES=$GTK2_RC_FILES:$HOME/.config/gtk-2.0/gtkrc
 
 # LOCAL PATHS
 export PATH=$PATH:$HOME/.local/bin
@@ -26,6 +28,9 @@ export JDK_HOME=/usr/lib/jvm/jdk-7-oracle-x64
 # BASH
 export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\] \$\[\033[00m\] » '
 export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWSTASHSTATE=1
+export GIT_PS1_SHOWUPSTREAM=1
+export GIT_PS1_SHOWUNTRACKEDFILES=1
 
 # KDE
 export KDEHOME=$HOME/.config/kde

@@ -1,2 +1,0 @@
-#!/bin/sh
-echo "$(cat /sys/class/power_supply/BAT0/charge_now) * 100 / $(cat /sys/class/power_supply/BAT0/charge_full)" | bc
