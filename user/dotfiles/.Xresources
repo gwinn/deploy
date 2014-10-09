@@ -1,19 +1,19 @@
-Xft.authint:   0
+Xft.authint:   true
 Xft.lcdfilter: lcddefault
 Xft.hintstyle: slight
-Xft.hinting:   1
-Xft.antialias: 1
+Xft.hinting:   true
+Xft.antialias: true
 Xft.dpi:       96
 Xft.rgba:      rgb
 
-Xcursor.theme: Bluecurve-FC6
-Xcursor.size:  16
+Xcursor.theme: Bluecurve
+Xcursor.size:  22
 
 !------------------------------------------------------------------------------
 ! Urxvt
 
 URxvt*termName:          xterm
-URxvt*font:              xft:Liberation\ Mono\ for\ Powerline:size=9:normal:autohint=true:hintstyle=slight
+URxvt*font:              xft:Liberation\ Mono\ for\ Powerline:size=8:normal:autohint=true:hintstyle=slight
 URxvt*geometry:          120x35
 URxvt*letterSpace:       -2
 URxvt.saveLines:         65535
@@ -56,9 +56,9 @@ URxvt.colorBD: rgb:ff/ff/ff
 URxvt*perl-lib:         /usr/lib/urxvt/perl/
 URxvt.perl-ext-common:  tabbed,default,matcher
 URxvt.underlineURLs:    true
-URxvt*urlLauncher:      /usr/bin/chrome
+URxvt*urlLauncher:      /usr/bin/uzbl
 URxvt.colorUL:          #7fc7ff
-URxvt.matcher.button:   1
+URxvt.matcher.button:   true
 !URxvt.keysym.M-u:       perl:url-select:select_next
 !URxvt.keysym.M-Escape:  perl:keyboard-select:activate
 !URxvt.keysym.M-s:       perl:keyboard-select:search
