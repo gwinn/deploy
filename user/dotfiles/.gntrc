@@ -1,5 +1,0 @@
-[general]
-mouse = 1
-
-[GntWM::binding]
-c-a-n = window-close

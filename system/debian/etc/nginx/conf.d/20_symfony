@@ -1,0 +1,59 @@
+server {
+    listen 127.0.0.1:80;
+    server_name *.sym.dev;
+    root /home/gwinn/Documents/Server/symfony/$http_host/web;
+
+    access_log /var/log/nginx/access.log;
+    error_log /var/log/nginx/error.log;
+
+    # strip app_dev.php/ prefix if it is present
+    rewrite ^/app_dev\.php/?(.*)$ /$1 permanent;
+
+    location / {
+        index app_dev.php;
+        try_files $uri @rewriteapp;
+    }
+
+    location @rewriteapp {
+        rewrite ^(.*)$ /app_dev.php/$1 last;
+    }
+
+    error_page   502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+
+    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+    #
+    location ~ ^/(app|app_dev)\.php(/|$) {
+        fastcgi_pass unix:/var/run/php5-fpm.sock;
+        fastcgi_index app_dev.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_script_name;
+        fastcgi_param PHP_VALUE "error_log=/var/log/nginx/error.log";
+        fastcgi_connect_timeout 60;
+        fastcgi_send_timeout 180;
+        fastcgi_read_timeout 180;
+        fastcgi_buffer_size 128k;
+        fastcgi_buffers 4 256k;
+        fastcgi_busy_buffers_size 256k;
+        fastcgi_temp_file_write_size 256k;
+        fastcgi_intercept_errors on;
+        fastcgi_split_path_info ^(.+\.php)(/.*)$;
+        fastcgi_param  HTTPS off;
+        include        /etc/nginx/fastcgi_params;
+    }
+
+    location ~* ^.+\.(html|jpe?g|gif|png|ico|css|zip|tgz|gz|rar|bz2|doc|docx|xls|xlsx|exe|pdf|ppt|pptx|txt|tar|wav|mp3|bmp|rtf|js|swf|m3u8)$ {
+        access_log off;
+        expires 5d;
+        add_header Cache-Control public,max-age=259200;
+    }
+
+    # deny access to .htaccess files, if Apache's document root
+    # concurs with nginx's one
+    #
+    location ~ /\.(ht|svn|git) {
+        deny  all;
+    }
+}

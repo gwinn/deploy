@@ -1,19 +1,21 @@
 # Configs for GTK2 programs 
 
-include "/usr/share/themes/Clearlooks/gtk-2.0/gtkrc"
+#include "/usr/share/themes/Adwaita/gtk-2.0/gtkrc"
+
 style "user-font" 
 {
-	font_name="Droid Sans 9"
+	font_name="Play 9"
 }
+
 widget_class "*" style "user-font"
-gtk-font-name="Droid Sans 9"
-gtk-theme-name=""
-gtk-icon-theme-name=""
+gtk-font-name="Play 9"
+gtk-theme-name="Zukitwo"
+gtk-icon-theme-name="elementary"
 gtk-fallback-icon-theme="gnome"
 gtk-toolbar-style=GTK_TOOLBAR_ICONS
 gtk-menu-images=0
 gtk-button-images=0
 gtk-xft-antialias=1
 gtk-xft-hinting=1
-gtk-xft-hintstyle="full"
+gtk-xft-hintstyle="slight"
 gtk-xft-rgba="rgb"

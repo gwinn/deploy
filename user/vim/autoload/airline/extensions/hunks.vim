@@ -1,38 +1,69 @@
-" MIT License. Copyright (c) 2013 Bailey Ling.
+" MIT License. Copyright (c) 2013-2014 Bailey Ling.
 " vim: et ts=2 sts=2 sw=2
+
+if !get(g:, 'loaded_signify', 0) && !get(g:, 'loaded_gitgutter', 0) && !get(g:, 'loaded_changes', 0)
+  finish
+endif
 
 let s:non_zero_only = get(g:, 'airline#extensions#hunks#non_zero_only', 0)
 let s:hunk_symbols = get(g:, 'airline#extensions#hunks#hunk_symbols', ['+', '~', '-'])
 
-let s:initialized = 0
-function! s:init()
-  if !s:initialized
-    let s:initialized = 1
+function! s:get_hunks_signify()
+  let hunks = sy#repo#get_stats()
+  if hunks[0] >= 0
+    return hunks
+  endif
+  return []
+endfunction
+
+function! s:is_branch_empty()
+  return exists('*airline#extensions#branch#head') && empty(airline#extensions#branch#head())
+endfunction
+
+function! s:get_hunks_gitgutter()
+  if !get(g:, 'gitgutter_enabled', 0) || s:is_branch_empty()
+    return ''
+  endif
+  return GitGutterGetHunkSummary()
+endfunction
+
+function! s:get_hunks_changes()
+  if !get(b:, 'changes_view_enabled', 0) || s:is_branch_empty()
+    return []
+  endif
+  let hunks = changes#GetStats()
+  for i in hunks
+    if i > 0
+      return hunks
+    endif
+  endfor
+  return []
+endfunction
+
+function! s:get_hunks_empty()
+  return ''
+endfunction
+
+let s:source_func = ''
+function! s:get_hunks()
+  if empty(s:source_func)
     if get(g:, 'loaded_signify', 0)
-      function! s:get_hunks()
-        let hunks = sy#repo#get_stats()
-        if hunks[0] >= 0
-          return hunks
-        endif
-        return []
-      endfunction
+      let s:source_func = 's:get_hunks_signify'
     elseif exists('*GitGutterGetHunkSummary')
-      function! s:get_hunks()
-        if !get(g:, 'gitgutter_enabled', 0)
-          return ''
-        endif
-        return GitGutterGetHunkSummary()
-      endfunction
+      let s:source_func = 's:get_hunks_gitgutter'
+    elseif exists('*changes#GetStats')
+      let s:source_func = 's:get_hunks_changes'
     else
-      function! s:get_hunks()
-        return []
-      endfunction
+      let s:source_func = 's:get_hunks_empty'
     endif
   endif
+  return {s:source_func}()
 endfunction
 
 function! airline#extensions#hunks#get_hunks()
-  call <sid>init()
+  if !get(w:, 'airline_active', 0)
+    return ''
+  endif
   let hunks = s:get_hunks()
   let string = ''
   if !empty(hunks)
@@ -46,6 +77,6 @@ function! airline#extensions#hunks#get_hunks()
 endfunction
 
 function! airline#extensions#hunks#init(ext)
-  let g:airline_section_b .= '%{airline#extensions#hunks#get_hunks()}'
+  call airline#parts#define_function('hunks', 'airline#extensions#hunks#get_hunks')
 endfunction
 

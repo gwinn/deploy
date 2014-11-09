@@ -52,12 +52,12 @@ internal_errormsg () {
 OPTIONFILE=/etc/X11/Xsession.options
 
 SYSRESOURCES=/etc/X11/Xresources
-USRRESOURCES=$HOME/.Xresources
+USRRESOURCES=$HOME/.config/X11/Xresources
 
 SYSSESSIONDIR=/etc/X11/Xsession.d
-USERXSESSION=$HOME/.xsession
-USERXSESSIONRC=$HOME/.xsessionrc
-ALTUSERXSESSION=$HOME/.Xsession
+USERXSESSION=$HOME/.config/X11/xsession
+USERXSESSIONRC=$HOME/.config/X11/xsessionrc
+ALTUSERXSESSION=$HOME/.config/X11/Xsession
 ERRFILE=/tmp/xsession-errors
 
 # attempt to create an error file; abort if we cannot

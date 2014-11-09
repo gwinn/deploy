@@ -15,7 +15,7 @@ export GTK_RC_FILES=$GTK_RC_FILES:$HOME/.config/gtk/gtkrc
 export GTK2_RC_FILES=$GTK2_RC_FILES:$HOME/.config/gtk-2.0/gtkrc
 
 # LOCAL PATHS
-export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.local/bin:$GEM_HOME/bin
 
 # APPS
 export MPLAYER_HOME=$HOME/.config/mplayer

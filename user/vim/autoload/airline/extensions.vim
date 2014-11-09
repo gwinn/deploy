@@ -1,18 +1,25 @@
-" MIT License. Copyright (c) 2013 Bailey Ling.
+" MIT License. Copyright (c) 2013-2014 Bailey Ling.
 " vim: et ts=2 sts=2 sw=2
 
 let s:ext = {}
+let s:ext._theme_funcrefs = []
+
 function! s:ext.add_statusline_func(name) dict
   call airline#add_statusline_func(a:name)
 endfunction
 function! s:ext.add_statusline_funcref(function) dict
   call airline#add_statusline_funcref(a:function)
 endfunction
+function! s:ext.add_inactive_statusline_func(name) dict
+  call airline#add_inactive_statusline_func(a:name)
+endfunction
+function! s:ext.add_theme_func(name) dict
+  call add(self._theme_funcrefs, function(a:name))
+endfunction
 
-let s:script_path = expand('<sfile>:p:h')
+let s:script_path = tolower(resolve(expand('<sfile>:p:h')))
 
 let s:filetype_overrides = {
-      \ 'netrw': [ 'netrw', '%f' ],
       \ 'nerdtree': [ 'NERD', '' ],
       \ 'gundo': [ 'Gundo', '' ],
       \ 'diff': [ 'diff', '' ],
@@ -23,28 +30,39 @@ let s:filetype_overrides = {
 
 let s:filetype_regex_overrides = {}
 
+function! s:check_defined_section(name)
+  if !exists('w:airline_section_{a:name}')
+    let w:airline_section_{a:name} = g:airline_section_{a:name}
+  endif
+endfunction
+
+function! airline#extensions#append_to_section(name, value)
+  call <sid>check_defined_section(a:name)
+  let w:airline_section_{a:name} .= a:value
+endfunction
+
+function! airline#extensions#prepend_to_section(name, value)
+  call <sid>check_defined_section(a:name)
+  let w:airline_section_{a:name} = a:value . w:airline_section_{a:name}
+endfunction
+
 function! airline#extensions#apply_left_override(section1, section2)
   let w:airline_section_a = a:section1
   let w:airline_section_b = a:section2
-  let w:airline_section_c = ''
+  let w:airline_section_c = airline#section#create(['readonly'])
   let w:airline_render_left = 1
   let w:airline_render_right = 0
 endfunction
 
 let s:active_winnr = -1
-function! airline#extensions#update_statusline(...)
-  if s:is_excluded_window(a:000)
+function! airline#extensions#apply(...)
+  let s:active_winnr = winnr()
+
+  if s:is_excluded_window()
     return -1
   endif
 
-  let s:active_winnr = winnr()
-
-  if &buftype == 'quickfix'
-    let w:airline_section_a = 'Quickfix'
-    let w:airline_section_b = ''
-    let w:airline_section_c = ''
-    let w:airline_section_x = ''
-  elseif &buftype == 'help'
+  if &buftype == 'help'
     call airline#extensions#apply_left_override('Help', '%f')
     let w:airline_section_x = ''
     let w:airline_section_y = ''
@@ -69,7 +87,7 @@ function! airline#extensions#update_statusline(...)
   endfor
 endfunction
 
-function! s:is_excluded_window(...)
+function! s:is_excluded_window()
   for matchft in g:airline_exclude_filetypes
     if matchft ==# &ft
       return 1
@@ -90,9 +108,7 @@ function! s:is_excluded_window(...)
 endfunction
 
 function! airline#extensions#load_theme()
-  if get(g:, 'loaded_ctrlp', 0)
-    call airline#extensions#ctrlp#load_theme()
-  endif
+  call airline#util#exec_funcrefs(s:ext._theme_funcrefs, g:airline#themes#{g:airline_theme}#palette)
 endfunction
 
 function! s:sync_active_winnr()
@@ -105,11 +121,14 @@ function! airline#extensions#load()
   " non-trivial number of external plugins use eventignore=all, so we need to account for that
   autocmd CursorMoved * call <sid>sync_active_winnr()
 
-  " load core funcrefs
-  call airline#add_statusline_func('airline#extensions#update_statusline')
+  call airline#extensions#quickfix#init(s:ext)
 
   if get(g:, 'loaded_unite', 0)
     call airline#extensions#unite#init(s:ext)
+  endif
+
+  if exists(':NetrwSettings')
+    call airline#extensions#netrw#init(s:ext)
   endif
 
   if get(g:, 'loaded_vimfiler', 0)
@@ -129,7 +148,7 @@ function! airline#extensions#load()
   endif
 
   if (get(g:, 'airline#extensions#hunks#enabled', 1) && get(g:, 'airline_enable_hunks', 1))
-        \ && (exists('g:loaded_signify') || exists('g:loaded_gitgutter'))
+        \ && (exists('g:loaded_signify') || exists('g:loaded_gitgutter') || exists('g:loaded_changes'))
     call airline#extensions#hunks#init(s:ext)
   endif
 
@@ -149,7 +168,8 @@ function! airline#extensions#load()
   endif
 
   if (get(g:, 'airline#extensions#branch#enabled', 1) && get(g:, 'airline_enable_branch', 1))
-        \ && (get(g:, 'loaded_fugitive', 0) || get(g:, 'loaded_lawrencium', 0))
+        \ && (exists('*fugitive#head') || exists('*lawrencium#statusline') ||
+        \     (get(g:, 'airline#extensions#branch#use_vcscommand', 0) && exists('*VCSCommandGetStatusLine')))
     call airline#extensions#branch#init(s:ext)
   endif
 
@@ -158,38 +178,65 @@ function! airline#extensions#load()
     call airline#extensions#bufferline#init(s:ext)
   endif
 
-  if g:airline_section_warning == '__'
-    if (get(g:, 'airline#extensions#syntastic#enabled', 1) && get(g:, 'airline_enable_syntastic', 1))
-          \ && exists(':SyntasticCheck')
-      call airline#extensions#syntastic#init(s:ext)
-    endif
-
-    if (get(g:, 'airline#extensions#whitespace#enabled', 1) && get(g:, 'airline_detect_whitespace', 1))
-      call airline#extensions#whitespace#init(s:ext)
-    endif
+  if get(g:, 'virtualenv_loaded', 0) && get(g:, 'airline#extensions#virtualenv#enabled', 1)
+    call airline#extensions#virtualenv#init(s:ext)
   endif
 
-  if get(g:, 'airline#extensions#readonly#enabled', 1)
-    call airline#extensions#readonly#init()
+  if (get(g:, 'airline#extensions#eclim#enabled', 1) && exists(':ProjectCreate'))
+    call airline#extensions#eclim#init(s:ext)
   endif
 
-  if (get(g:, 'airline#extensions#paste#enabled', 1) && get(g:, 'airline_detect_paste', 1))
-    call airline#extensions#paste#init()
+  if (get(g:, 'airline#extensions#syntastic#enabled', 1) && get(g:, 'airline_enable_syntastic', 1))
+        \ && exists(':SyntasticCheck')
+    call airline#extensions#syntastic#init(s:ext)
   endif
 
-  if g:airline_detect_iminsert
-    call airline#extensions#iminsert#init()
+  if (get(g:, 'airline#extensions#whitespace#enabled', 1) && get(g:, 'airline_detect_whitespace', 1))
+    call airline#extensions#whitespace#init(s:ext)
   endif
 
-  " load all other extensions not part of the default distribution
-  for file in split(globpath(&rtp, "autoload/airline/extensions/*.vim"), '\n')
-    if stridx(resolve(fnamemodify(file, ':p')), s:script_path) < 0
-      let name = fnamemodify(file, ':t:r')
-      if !get(g:, 'airline#extensions#'.name.'#enabled', 1)
-        continue
+  if get(g:, 'airline#extensions#tabline#enabled', 0)
+    call airline#extensions#tabline#init(s:ext)
+  endif
+
+  if get(g:, 'airline#extensions#tmuxline#enabled', 1) && exists(':Tmuxline')
+    call airline#extensions#tmuxline#init(s:ext)
+  endif
+
+  if get(g:, 'airline#extensions#promptline#enabled', 1) && exists(':PromptlineSnapshot') && len(get(g:, 'airline#extensions#promptline#snapshot_file', ''))
+    call airline#extensions#promptline#init(s:ext)
+  endif
+
+  if get(g:, 'airline#extensions#nrrwrgn#enabled', 1) && exists(':NR') == 2
+      call airline#extensions#nrrwrgn#init(s:ext)
+  endif
+
+  if (get(g:, 'airline#extensions#capslock#enabled', 1) && exists('*CapsLockStatusline'))
+    call airline#extensions#capslock#init(s:ext)
+  endif
+
+  if (get(g:, 'airline#extensions#windowswap#enabled', 1) && get(g:, 'loaded_windowswap', 0))
+    call airline#extensions#windowswap#init(s:ext)
+  endif
+
+  if !get(g:, 'airline#extensions#disable_rtp_load', 0)
+    " load all other extensions, which are not part of the default distribution.
+    " (autoload/airline/extensions/*.vim outside of our s:script_path).
+    for file in split(globpath(&rtp, "autoload/airline/extensions/*.vim"), "\n")
+      " we have to check both resolved and unresolved paths, since it's possible
+      " that they might not get resolved properly (see #187)
+      if stridx(tolower(resolve(fnamemodify(file, ':p'))), s:script_path) < 0
+            \ && stridx(tolower(fnamemodify(file, ':p')), s:script_path) < 0
+        let name = fnamemodify(file, ':t:r')
+        if !get(g:, 'airline#extensions#'.name.'#enabled', 1)
+          continue
+        endif
+        try
+          call airline#extensions#{name}#init(s:ext)
+        catch
+        endtry
       endif
-      call airline#extensions#{name}#init(s:ext)
-    endif
-  endfor
+    endfor
+  endif
 endfunction
 

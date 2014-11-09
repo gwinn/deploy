@@ -39,7 +39,7 @@
                   'Active' - where the active window is -->
   </placement>
   <theme>
-    <name>modernflatdark</name>
+    <name>Zukitwo</name>
     <titleLayout>LIMC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
@@ -337,51 +337,17 @@
           <enabled>true</enabled>
           <name>Browser</name>
         </startupnotify>
-        <command>chromium-browser</command>
-      </action>
-    </keybind>
-    <keybind key="W-s">
-      <action name="Execute">
-        <startupnotify>
-          <enabled>true</enabled>
-          <name>Skype</name>
-        </startupnotify>
-        <command>skype</command>
+        <command>google-chrome</command>
       </action>
     </keybind>
     <keybind key="A-F2">
       <action name="Execute">
-        <command>dmenu_run -b -p "&gt;&gt;" -nb "#000000" -nf "#F3F3F3" -fn "-*-fixed-medium-r-normal-*-13-*-100-100-c-70-iso8859-1"</command>
+        <command>dmenu_run -b -p "&gt;&gt;" -nb "#000000" -nf "#F3F3F3" -fn Play-9</command>
       </action>
     </keybind>
-    <keybind key="XF86AudioNext">
+    <keybind key="W-Print">
       <action name="Execute">
-        <command>cmus-remote -n</command>
-      </action>
-    </keybind>
-    <keybind key="XF86AudioPrev">
-      <action name="Execute">
-        <command>cmus-remote -r</command>
-      </action>
-    </keybind>
-    <keybind key="XF86AudioPlay">
-      <action name="Execute">
-        <command>cplay</command>
-      </action>
-    </keybind>
-    <keybind key="XF86MonBrightnessDown">
-      <action name="Execute">
-        <command>xbacklight -dec 10</command>
-      </action>
-    </keybind>
-    <keybind key="XF86MonBrightnessUp">
-      <action name="Execute">
-        <command>xbacklight -inc 10</command>
-      </action>
-    </keybind>
-    <keybind key="Print">
-      <action name="Execute">
-        <command>shutter</command>
+        <command>scrot -b -c -d 3 -q 100 -s -z</command>
       </action>
     </keybind>
     <keybind key="W-space">
@@ -462,7 +428,7 @@
         <action name="Move"/>
       </mousebind>
       <mousebind button="Left" action="DoubleClick">
-        <action name="ToggleMaximize"/>
+        <action name="ToggleMaximizeFull"/>
       </mousebind>
       <mousebind button="Up" action="Click">
         <action name="if">

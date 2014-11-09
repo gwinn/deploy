@@ -1,5 +1,9 @@
-" MIT License. Copyright (c) 2013 Bailey Ling.
+" MIT License. Copyright (c) 2013-2014 Bailey Ling.
 " vim: et ts=2 sts=2 sw=2
+
+if !get(g:, 'loaded_csv', 0) && !exists(':Table')
+  finish
+endif
 
 let s:column_display = get(g:, 'airline#extensions#csv#column_display', 'Number')
 
@@ -16,13 +20,8 @@ endfunction
 
 function! airline#extensions#csv#apply(...)
   if &ft ==# "csv"
-    if !exists('w:airline_section_gutter')
-      let w:airline_section_gutter = '%='
-    endif
-    let w:airline_section_gutter =
-          \ g:airline_left_alt_sep
-          \ .' %{airline#extensions#csv#get_column()}'
-          \ .w:airline_section_gutter
+    call airline#extensions#prepend_to_section('gutter',
+          \ g:airline_left_alt_sep.' %{airline#extensions#csv#get_column()}')
   endif
 endfunction
 

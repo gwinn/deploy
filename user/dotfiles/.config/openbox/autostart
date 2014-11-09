@@ -1,12 +1,7 @@
 
 setxkbmap -layout "us,ru" -option "grp:alt_shift_toggle,grp_led:scroll,terminate:ctrl_alt_bksp,compose:ralt" -model pc105
-hsetroot -fill ~/.config/background/burningautumn.jpg &
+hsetroot -fill ~/Documents/Pictures/wallpapers/1920x1080n.png &
 tint2 -c ~/.config/tint2/tint2rc &
-perWindowLayoutD &
+compton -cCGfF -o 0.38 -O 200 -I 200 -t -3 -l -3 -r 7 -D2 -m 0.88 --shadow-exclude '_NET_WM_OPAQUE_REGION@:c' -b
 volti &
-u1sdtool --start
-
-#xcompmgr &
-#conky -c ~/.config/conky/conky.conf &
-#feh  --bg-scale '/home/gwinn/Pictures/Wallpappers/burningautumn.jpg' &
-
+xxkb &
