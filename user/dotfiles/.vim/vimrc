@@ -146,9 +146,8 @@ map <F11> :TlistToggle<cr>
 noremap <expr> <silent> <Home> col('.') == match(getline('.'),'\S')+1 ? '0' : '^'
 imap <silent> <Home> <C-O><Home>
 
-
-
 """" Plugins
+
 set rtp+=~/.local/share/vim/bundle/Vundle.vim
 
 call vundle#begin()
@@ -158,7 +157,10 @@ call vundle#begin()
     Plugin 'bling/vim-airline'
     Plugin 'scrooloose/nerdtree'
     Plugin 'vim-scripts/bufexplorer.zip'
+    Plugin 'vim-scripts/spacehi.vim'
+    Plugin 'vim-scripts/AutoComplPop'
     Plugin 'wombat256.vim'
+    Plugin 'mhinz/vim-signify'
 call vundle#end()
 
 filetype plugin indent on 
@@ -184,13 +186,13 @@ let g:airline_theme='laederon'
 " let Tlist_Compact_Format = 1
 
 " SpaceHighlight
-" autocmd syntax * SpaceHi
+autocmd syntax * SpaceHi
 
 " Omni completion
-" imap <C-F> <C-X><C-O>
+imap <C-F> <C-X><C-O>
 
 " Invisibles
-" nmap <leader>l :set list!<CR>
-" set listchars=tab:▸\ ,eol:¬
-" highlight NonText guifg=#4a4a59
-" highlight SpecialKey guifg=#4a4a59
+nmap <leader>l :set list!<CR>
+set listchars=tab:▸\ ,eol:¬
+highlight NonText guifg=#4a4a59
+highlight SpecialKey guifg=#4a4a59
