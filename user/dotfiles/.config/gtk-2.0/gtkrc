@@ -1,7 +1,3 @@
-# Configs for GTK2 programs 
-
-#include "/usr/share/themes/Adwaita/gtk-2.0/gtkrc"
-
 style "user-font" 
 {
 	font_name="Play 9"
@@ -17,5 +13,5 @@ gtk-menu-images=0
 gtk-button-images=0
 gtk-xft-antialias=1
 gtk-xft-hinting=1
-gtk-xft-hintstyle="slight"
+gtk-xft-hintstyle="hintfull"
 gtk-xft-rgba="rgb"

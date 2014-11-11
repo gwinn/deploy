@@ -97,8 +97,6 @@ alias phs='php -S localhost:8888 -c /etc/php5/fpm/php.ini'
 alias symfony='php -d memory_limit=1024M app/console'
 alias mcabber="mcabber -f $HOME/.config/mcabber/mcabberrc"
 alias irssi="irssi --config=$HOME/.config/irssi/config --home=$HOME/.config/irssi"
-alias vim="vim -u $HOME/.local/share/vim/vimrc"
-alias vimdiff="vimdiff -u $HOME/.local/share/vim/vimrc"
 alias php52="/opt/php/5.2/bin/php -c /opt/php/5.2/etc/php.ini"
 alias php53="/opt/php/5.3/bin/php -c /opt/php/5.3/etc/php.ini"
 alias php54="/opt/php/5.4/bin/php -c /opt/php/5.4/etc/php.ini"

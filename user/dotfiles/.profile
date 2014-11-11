@@ -6,7 +6,7 @@ export TERM=xterm-256color
 # RC
 export COMPOSER_HOME=$HOME/.cache/composer
 export GNUPGHOME=$HOME/.config/gnupg
-export GEMRC=$HOME/.local/lib/ruby/gem/gemrc
+export GEMRC=$HOME/.config/gem/gemrc
 export GEM_HOME=$HOME/.local/lib/ruby/gem
 export GEM_SPEC_CACHE=$GEM_HOME/specs
 export MYSQL_HISTFILE=$HOME/.cache/mysql_history
@@ -20,10 +20,6 @@ export PATH=$PATH:$HOME/.local/bin:$GEM_HOME/bin
 # APPS
 export MPLAYER_HOME=$HOME/.config/mplayer
 export GIMP2_DIRECTORY=$HOME/.local/share/gimp-2.8
-
-# JAVA
-export JAVA_HOME=/usr/lib/jvm/jdk-7-oracle-x64
-export JDK_HOME=/usr/lib/jvm/jdk-7-oracle-x64
 
 # BASH
 export PS1='\[\033[01;32m\][\u@\h]\[\033[01;34m\][\W]\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\]\[\033[00m\] » '

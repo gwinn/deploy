@@ -1,21 +1,9 @@
-" set default 'runtimepath' (without ~/.vim folders)
-let &runtimepath = printf('%s/vimfiles,%s,%s/vimfiles/after', $VIM, $VIMRUNTIME, $VIM)
-
-" what is the name of the directory containing this file?
-let s:portable = expand('<sfile>:p:h')
-
-" add the directory to 'runtimepath'
-let &runtimepath = printf('%s,%s,%s/after', s:portable, &runtimepath, s:portable)
-
-set t_Co=256
-set background=dark
-colorscheme wombat256
-
+"""" General
 if has('gui_running')
   set lines=56 columns=165
   set guioptions+=LlRrb
   set guioptions-=LlRrb
-  set guifont=Liberation\ Mono\ For\ Powerline\ 9
+  set guifont=Liberation\ Mono\ For\ Powerline\ 8
   set guioptions-=T
   set guioptions-=m
   map  <silent>  <S-Insert>  "+p
@@ -23,7 +11,7 @@ if has('gui_running')
 endif
 
 syntax on
-filetype on
+filetype off
 
 set tabstop=2
 set shiftwidth=2
@@ -55,7 +43,6 @@ set hidden
 set autoindent
 set wildchar=<TAB>
 set backspace=indent,eol,start whichwrap+=<,>,[,]
-set statusline=%<%f\ %h%m%r\ %b\ %{&encoding}\ 0x\ \ %{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 set laststatus=2
 set fillchars+=stl:\ ,stlnc:\
 set smartindent
@@ -66,27 +53,16 @@ set fo+=cr
 set viminfo^=!
 set wildmenu
 set wcm=<Tab>
-set viminfo+=n$HOME/.local/share/vim/.service/.viminfo
 
-let NERDTreeShowHidden = 1
 
-let g:airline_powerline_fonts=1
-let g:airline_theme='ubaryd'
+""""""""" Cursor & coloring
+set t_Co=256
+set background=dark
 
-let g:AutoClosePairs = {'(': ')', '{': '}', '[': ']', '"': '"'}
-
-let g:netrw_browsex_viewer="open"
-let g:netrw_home=expand("~/.local/share/vim/.service")
-let g:netrw_keepdir=1
-
-let Tlist_Ctags_Cmd = "/usr/bin/ctags"
-let Tlist_WinWidth = 40
-let Tlist_Use_Right_Window = 1
-let Tlist_Auto_Update = 1
-let Tlist_Auto_Highlight_Tag = 1
-let Tlist_Compact_Format = 1
-
-let g:phpcs_std_list="PSR2"
+set guicursor=n-v-c:block-Cursor
+set guicursor+=i:ver100-iCursor
+set guicursor+=n-v-c:blinkon1
+set guicursor+=i:blinkwait1
 
 hi CursorLine term=bold cterm=bold ctermbg=059 guibg=grey20
 hi colorcolumn term=bold cterm=bold ctermbg=059 guibg=grey20
@@ -94,35 +70,32 @@ hi colorcolumn term=bold cterm=bold ctermbg=059 guibg=grey20
 highlight Cursor guifg=white guibg=green
 highlight iCursor guifg=white guibg=steelblue
 
-set guicursor=n-v-c:block-Cursor
-set guicursor+=i:ver100-iCursor
-set guicursor+=n-v-c:blinkon1
-set guicursor+=i:blinkwait1
 
+"""" Filetypes & System
 au BufRead,BufNewFile *.twig set ft=jinja
 au FileType php    setl sw=4 sts=4 sw=4 et
 au FileType python setl sw=4 sts=4 sw=4 et
 au FileType jinja  setl sw=4 sts=4 sw=4 et
 au FileType make   setl sw=8 sts=8 sw=8 noexpandtab
 
-
-autocmd syntax * SpaceHi
-
-nmap <F2> :w<cr>
-vmap <F2> <esc>:w<cr>i
-imap <F2> <esc>:w<cr>i
-imap >Ins> <Esc>i
+let g:AutoClosePairs = {'(': ')', '{': '}', '[': ']', '"': '"'}
+let g:netrw_browsex_viewer="open"
+let g:netrw_home=expand("/tmp")
+let g:netrw_keepdir=1
+let g:netrw_liststyle=3
+set viminfo+=n/tmp/.viminfo
 
 menu Encoding.koi8-r :e ++enc=koi8-r<CR>
 menu Encoding.windows-1251 :e ++enc=cp1251<CR>
 menu Encoding.cp866 :e ++enc=cp866<CR>
 menu Encoding.utf-8 :e ++enc=utf8 <CR>
 
-map <C-Q> <Esc>:qa<cr>
-map <C-p> <Esc>:NERDTreeToggle<cr>
-
-" Omni completion
-imap <C-F> <C-X><C-O>
+"""" Bindings
+" Save
+nmap <F2> :w<cr>
+vmap <F2> <esc>:w<cr>i
+imap <F2> <esc>:w<cr>i
+imap >Ins> <Esc>i
 
 " Del line
 nmap <C-d> dd
@@ -148,10 +121,10 @@ map <F7> :bn<cr>
 vmap <F7> <esc>:bn<cr>i
 imap <F7> <esc>:bn<cr>i
 
-" F8 - marks browser
-map <F8> :MarksBrowser<cr>
-vmap <F8> <esc>:MarksBrowser<cr>
-imap <F8> <esc>:MarksBrowser<cr>
+" F8 - Vundle plugin install
+map <F8> :PluginInstall<cr>
+vmap <F8> <esc>:PluginInstall<cr>
+imap <F8> <esc>:PluginInstall<cr>
 
 " F9 - "make"
 map <F9> :make<cr>
@@ -167,16 +140,57 @@ imap <F10> <esc>:bd<cr>
 map <F11> :TlistToggle<cr>
 
 " F12 - build tags
-map <F12> :!/usr/bin/ctags -R --fields=+iaS --extra=+q .<CR>
+" map <F12> :!/usr/bin/ctags -R --fields=+iaS --extra=+q .<CR>
 
 " Smart home key
 noremap <expr> <silent> <Home> col('.') == match(getline('.'),'\S')+1 ? '0' : '^'
 imap <silent> <Home> <C-O><Home>
 
+
+
+"""" Plugins
+set rtp+=~/.local/share/vim/bundle/Vundle.vim
+
+call vundle#begin()
+    Plugin 'gmarik/Vundle.vim'
+    Plugin 'tpope/vim-fugitive'
+    Plugin 'L9'
+    Plugin 'bling/vim-airline'
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'vim-scripts/bufexplorer.zip'
+    Plugin 'wombat256.vim'
+call vundle#end()
+
+filetype plugin indent on 
+colorscheme wombat256mod
+
+" Fugutive
+set statusline=%<%f\ %h%m%r\ %b\ %{&encoding}\ 0x\ \ %{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+
+" NerdTree
+let NERDTreeShowHidden = 1
+map <C-p> <Esc>:NERDTreeToggle<cr>
+
+" Airline
+let g:airline_powerline_fonts=1
+let g:airline_theme='laederon'
+
+" Ctags
+" let Tlist_Ctags_Cmd = "/usr/bin/ctags"
+" let Tlist_WinWidth = 40
+" let Tlist_Use_Right_Window = 1
+" let Tlist_Auto_Update = 1
+" let Tlist_Auto_Highlight_Tag = 1
+" let Tlist_Compact_Format = 1
+
+" SpaceHighlight
+" autocmd syntax * SpaceHi
+
+" Omni completion
+" imap <C-F> <C-X><C-O>
+
 " Invisibles
-nmap <leader>l :set list!<CR>
-set listchars=tab:▸\ ,eol:¬
-highlight NonText guifg=#4a4a59
-highlight SpecialKey guifg=#4a4a59
-
-
+" nmap <leader>l :set list!<CR>
+" set listchars=tab:▸\ ,eol:¬
+" highlight NonText guifg=#4a4a59
+" highlight SpecialKey guifg=#4a4a59
