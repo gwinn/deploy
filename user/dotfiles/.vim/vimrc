@@ -53,7 +53,7 @@ set fo+=cr
 set viminfo^=!
 set wildmenu
 set wcm=<Tab>
-
+set clipboard=unnamedplus,unnamed
 
 """"""""" Cursor & coloring
 set t_Co=256
