@@ -60,16 +60,13 @@ set t_Co=256
 set background=dark
 
 set guicursor=n-v-c:block-Cursor
-set guicursor+=i:ver100-iCursor
-set guicursor+=n-v-c:blinkon1
-set guicursor+=i:blinkwait1
+set guicursor+=n-v-c:blinkon0
+set guicursor+=i:blinkwait2
 
 hi CursorLine term=bold cterm=bold ctermbg=059 guibg=grey20
 hi colorcolumn term=bold cterm=bold ctermbg=059 guibg=grey20
-
-highlight Cursor guifg=white guibg=green
-highlight iCursor guifg=white guibg=steelblue
-
+hi Cursor guifg=white guibg=grey20
+hi iCursor guifg=white guibg=grey20
 
 """" Filetypes & System
 au BufRead,BufNewFile *.twig set ft=jinja
