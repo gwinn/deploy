@@ -147,7 +147,7 @@ imap <silent> <Home> <C-O><Home>
 
 set rtp+=~/.local/share/vim/bundle/Vundle.vim
 
-call vundle#begin()
+call vundle#begin("$HOME/.local/share/vim/bundle")
     Plugin 'gmarik/Vundle.vim'
     Plugin 'tpope/vim-fugitive'
     Plugin 'L9'
@@ -175,12 +175,12 @@ let g:airline_powerline_fonts=1
 let g:airline_theme='laederon'
 
 " Ctags
-" let Tlist_Ctags_Cmd = "/usr/bin/ctags"
-" let Tlist_WinWidth = 40
-" let Tlist_Use_Right_Window = 1
-" let Tlist_Auto_Update = 1
-" let Tlist_Auto_Highlight_Tag = 1
-" let Tlist_Compact_Format = 1
+let Tlist_Ctags_Cmd = "/usr/bin/ctags"
+let Tlist_WinWidth = 40
+let Tlist_Use_Right_Window = 1
+let Tlist_Auto_Update = 1
+let Tlist_Auto_Highlight_Tag = 1
+let Tlist_Compact_Format = 1
 
 " SpaceHighlight
 autocmd syntax * SpaceHi

@@ -49,12 +49,12 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+    # We have color support; assume it's compliant with Ecma-48
+    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+    # a case would tend to support setf rather than setaf.)
+        color_prompt=yes
     else
-	color_prompt=
+        color_prompt=
     fi
 fi
 
@@ -93,10 +93,14 @@ alias l='ls -CF'
 alias rm='rm -rf'
 alias cp='cp -r'
 alias df='df -h -x tmpfs -x devtmpfs -x rootfs'
+
+alias mcabber="mcabber -f ~/.config/mcabber/mcabberrc"
+alias irssi="irssi --config=~/.config/irssi/config --home=~/.config/irssi"
+alias nano="nano -AESimw"
+alias mocp="mocp -M ~/.local/share/moc -m ~/Documents/Music/ -T /usr/share/moc/themes/darkdot_theme"
+
 alias phs='php -S localhost:8888 -c /etc/php5/fpm/php.ini'
 alias symfony='php -d memory_limit=1024M app/console'
-alias mcabber="mcabber -f $HOME/.config/mcabber/mcabberrc"
-alias irssi="irssi --config=$HOME/.config/irssi/config --home=$HOME/.config/irssi"
 alias php52="/opt/php/5.2/bin/php -c /opt/php/5.2/etc/php.ini"
 alias php53="/opt/php/5.3/bin/php -c /opt/php/5.3/etc/php.ini"
 alias php54="/opt/php/5.4/bin/php -c /opt/php/5.4/etc/php.ini"

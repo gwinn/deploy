@@ -37,9 +37,10 @@
        from 1, specifying a particular monitor.  Or it can be one of the
        following: 'Mouse' - where the mouse is, or
                   'Active' - where the active window is -->
+    <center>yes</center>
   </placement>
   <theme>
-    <name>Zukitwo</name>
+    <name>Zukitwo-ob</name>
     <titleLayout>LIMC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
@@ -261,12 +262,6 @@
         <menu>client-menu</menu>
       </action>
     </keybind>
-    <!-- Take a screenshot of the current window with gnome-screenshot when Alt+Print are pressed -->
-    <keybind key="A-Print">
-      <action name="Execute">
-        <command>gnome-screenshot -w</command>
-      </action>
-    </keybind>
     <keybind key="A-F5">
       <action name="ToggleMaximize"/>
     </keybind>
@@ -337,17 +332,18 @@
           <enabled>true</enabled>
           <name>Browser</name>
         </startupnotify>
-        <command>google-chrome</command>
+        <command>iceweasel</command>
       </action>
     </keybind>
     <keybind key="A-F2">
       <action name="Execute">
-        <command>dmenu_run -b -p "&gt;&gt;" -nb "#000000" -nf "#F3F3F3" -fn Play-9</command>
+        <!--<command>dmenu_run -b -p "&gt;&gt;" -nb "#000000" -nf "#F3F3F3" -fn Play-9</command>-->
+        <command>grun</command>
       </action>
     </keybind>
     <keybind key="W-Print">
       <action name="Execute">
-        <command>scrot -b -c -d 3 -q 100 -s -z</command>
+        <command>screenshot</command>
       </action>
     </keybind>
     <keybind key="W-space">
