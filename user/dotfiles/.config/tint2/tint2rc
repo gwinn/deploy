@@ -24,7 +24,7 @@ border_color = #FFFFFF 68
 # Panel
 panel_monitor = all
 panel_position = top center horizontal
-panel_items = TSC
+panel_items = CTS
 panel_size = 100% 22
 panel_margin = 0 -1
 panel_padding = 2 0 2
@@ -75,21 +75,21 @@ font_shadow = 0
 
 # System Tray
 systray = 1
-systray_padding = 0 4 5
+systray_padding = 3 0 3
 systray_sort = ascending
 systray_background_id = 0
-systray_icon_size = 24
+systray_icon_size = 16
 systray_icon_asb = 70 0 0
 
 # Clock
 time1_format = %H:%M
 time1_font = Play 9
-time2_format = %Y-%m-%d
-time2_font = Play 6
-clock_font_color = #ededed 74
-clock_padding = 1 0
+time2_format = 
+time2_font =
+clock_font_color = #fefefe 74
+clock_padding = 3 0
 clock_background_id = 0
-clock_rclick_command = google-chrome -u http://calendar.google.com
+clock_rclick_command = iceweasel -u http://calendar.google.com
 
 # Tooltips
 tooltip_padding = 2 2
