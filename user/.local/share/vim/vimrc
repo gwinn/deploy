@@ -3,7 +3,7 @@ if has('gui_running')
   set lines=56 columns=165
   set guioptions+=LlRrb
   set guioptions-=LlRrb
-  set guifont=Liberation\ Mono\ For\ Powerline\ 8
+  set guifont=Liberation\ Mono\ For\ Powerline\ 10
   set guioptions-=T
   set guioptions-=m
   map  <silent>  <S-Insert>  "+p
@@ -148,6 +148,7 @@ call vundle#begin("$HOME/.local/share/vim/bundle")
     Plugin 'gmarik/Vundle.vim'
     Plugin 'Valloric/YouCompleteMe'
     Plugin 'scrooloose/nerdtree'
+    Plugin 'scrooloose/syntastic'
     Plugin 'SirVer/ultisnips'
     Plugin 'majutsushi/tagbar'
     Plugin 'tobyS/pdv'
@@ -170,13 +171,23 @@ colorscheme wombat256mod
 " Fugutive
 set statusline=%<%f\ %h%m%r\ %b\ %{&encoding}\ 0x\ \ %{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 " NerdTree
 let NERDTreeShowHidden = 1
 map <C-p> <Esc>:NERDTreeToggle<cr>
 
 " Airline
 let g:airline_powerline_fonts=1
-let g:airline_theme='laederon'
+let g:airline_theme='wombat'
 
 " Ctags
 let Tlist_Ctags_Cmd = "/usr/bin/ctags"
@@ -203,4 +214,4 @@ let g:pdv_template_dir = $HOME . "/.local/share/vim/bundle/pdv/templates_snip"
 map <C-l> <Esc>:call pdv#DocumentWithSnip()<cr>
 
 " Taglist
-nmap <C-F11> :TagbarToggle<CR>
+nmap <C-T> :TagbarToggle<CR>
