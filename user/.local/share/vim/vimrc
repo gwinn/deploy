@@ -3,7 +3,7 @@ if has('gui_running')
   set lines=56 columns=165
   set guioptions+=LlRrb
   set guioptions-=LlRrb
-  set guifont=Liberation\ Mono\ For\ Powerline\ 10
+  set guifont=Liberation\ Mono\ For\ Powerline\ 8
   set guioptions-=T
   set guioptions-=m
   map  <silent>  <S-Insert>  "+p
@@ -153,6 +153,7 @@ call vundle#begin("$HOME/.local/share/vim/bundle")
     Plugin 'majutsushi/tagbar'
     Plugin 'tobyS/pdv'
     Plugin 'tobyS/vmustache'
+    Plugin 'fatih/vim-go'
     Plugin 'tpope/vim-fugitive'
     Plugin 'evidens/vim-twig'
     Plugin 'bling/vim-airline'
@@ -215,3 +216,4 @@ map <C-l> <Esc>:call pdv#DocumentWithSnip()<cr>
 
 " Taglist
 nmap <C-T> :TagbarToggle<CR>
+
