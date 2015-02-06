@@ -72,7 +72,9 @@ hi iCursor guifg=white guibg=grey20
 au FileType php    setl sw=4 sts=4 sw=4 et
 au FileType python setl sw=4 sts=4 sw=4 et
 au FileType jinja  setl sw=4 sts=4 sw=4 et
-au FileType twig  setl sw=4 sts=4 sw=4 et
+au FileType twig   setl sw=4 sts=4 sw=4 et
+au FileType go     setl sw=4 sts=4 sw=4 et
+au FileType ruby   setl sw=4 sts=4 sw=4 et
 au FileType make   setl sw=8 sts=8 sw=8 noexpandtab
 
 let g:AutoClosePairs = {'(': ')', '{': '}', '[': ']', '"': '"'}
