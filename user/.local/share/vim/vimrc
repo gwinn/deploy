@@ -3,7 +3,7 @@ if has('gui_running')
   set lines=56 columns=165
   set guioptions+=LlRrb
   set guioptions-=LlRrb
-  set guifont=Liberation\ Mono\ For\ Powerline\ 8
+  set guifont=Liberation\ Mono\ for\ Powerline\ 8
   set guioptions-=T
   set guioptions-=m
   map  <silent>  <S-Insert>  "+p
@@ -164,6 +164,7 @@ call vundle#begin("$HOME/.local/share/vim/bundle")
     Plugin 'vim-scripts/AutoComplPop'
     Plugin 'L9'
     Plugin 'wombat256.vim'
+    Plugin 'ryanoasis/vim-webdevicons'
 call vundle#end()
 
 filetype plugin indent on
