@@ -5,5 +5,5 @@ bit.schemes = ssh http https
 
 [ui]
 username = gwinn
+verbose = true
 ssh = ssh -C
-

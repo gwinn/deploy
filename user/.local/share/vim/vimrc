@@ -3,7 +3,11 @@ if has('gui_running')
   set lines=56 columns=165
   set guioptions+=LlRrb
   set guioptions-=LlRrb
+<<<<<<< HEAD
   set guifont=Liberation\ Mono\ for\ Powerline\ 8
+=======
+  set guifont=Liberation\ Mono\ For\ Powerline\ 10
+>>>>>>> 8b7b0c34db9ebf255e81f294baad94aa4907c477
   set guioptions-=T
   set guioptions-=m
   map  <silent>  <S-Insert>  "+p
@@ -72,7 +76,9 @@ hi iCursor guifg=white guibg=grey20
 au FileType php    setl sw=4 sts=4 sw=4 et
 au FileType python setl sw=4 sts=4 sw=4 et
 au FileType jinja  setl sw=4 sts=4 sw=4 et
-au FileType twig  setl sw=4 sts=4 sw=4 et
+au FileType twig   setl sw=4 sts=4 sw=4 et
+au FileType go     setl sw=4 sts=4 sw=4 et
+au FileType ruby   setl sw=4 sts=4 sw=4 et
 au FileType make   setl sw=8 sts=8 sw=8 noexpandtab
 
 let g:AutoClosePairs = {'(': ')', '{': '}', '[': ']', '"': '"'}
@@ -152,8 +158,8 @@ call vundle#begin("$HOME/.local/share/vim/bundle")
     Plugin 'SirVer/ultisnips'
     Plugin 'majutsushi/tagbar'
     Plugin 'tobyS/pdv'
-    Plugin 'tobyS/vmustache'
     Plugin 'fatih/vim-go'
+    Plugin 'tobyS/vmustache'
     Plugin 'tpope/vim-fugitive'
     Plugin 'evidens/vim-twig'
     Plugin 'bling/vim-airline'
@@ -217,4 +223,12 @@ map <C-l> <Esc>:call pdv#DocumentWithSnip()<cr>
 
 " Taglist
 nmap <C-T> :TagbarToggle<CR>
+
+" Vim-Go
+let g:go_highlight_functions=1
+let g:go_highlight_methods=1
+let g:go_highlight_structs=1
+let g:go_fmt_autosave=0
+let g:go_fmt_command="goimports"
+
 
