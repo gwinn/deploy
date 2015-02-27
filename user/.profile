@@ -15,6 +15,7 @@ export GTK_RC_FILES=$GTK_RC_FILES:$HOME/.config/gtk/gtkrc
 export GTK2_RC_FILES=$GTK2_RC_FILES:$HOME/.config/gtk-2.0/gtkrc
 export VIMINIT='let $MYVIMRC="~/.local/share/vim/vimrc" | source $MYVIMRC'
 export VAGRANT_HOME=$HOME/.local/share/vagrant
+export VAGRANT_DEFAULT_PROVIDER=virtualbox
 export GOPATH=$HOME/Sources/go
 
 # LOCAL PATHS
