@@ -3,11 +3,7 @@ if has('gui_running')
   set lines=56 columns=165
   set guioptions+=LlRrb
   set guioptions-=LlRrb
-<<<<<<< HEAD
-  set guifont=Liberation\ Mono\ for\ Powerline\ 8
-=======
   set guifont=Liberation\ Mono\ For\ Powerline\ 10
->>>>>>> 8b7b0c34db9ebf255e81f294baad94aa4907c477
   set guioptions-=T
   set guioptions-=m
   map  <silent>  <S-Insert>  "+p
