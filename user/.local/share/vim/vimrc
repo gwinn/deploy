@@ -3,7 +3,7 @@ if has('gui_running')
   set lines=56 columns=165
   set guioptions+=LlRrb
   set guioptions-=LlRrb
-  set guifont=Liberation\ Mono\ For\ Powerline\ 10
+  set guifont=Liberation\ Mono\ for\ Powerline\ 8
   set guioptions-=T
   set guioptions-=m
   map  <silent>  <S-Insert>  "+p
@@ -72,9 +72,7 @@ hi iCursor guifg=white guibg=grey20
 au FileType php    setl sw=4 sts=4 sw=4 et
 au FileType python setl sw=4 sts=4 sw=4 et
 au FileType jinja  setl sw=4 sts=4 sw=4 et
-au FileType twig   setl sw=4 sts=4 sw=4 et
-au FileType go     setl sw=4 sts=4 sw=4 et
-au FileType ruby   setl sw=4 sts=4 sw=4 et
+au FileType twig  setl sw=4 sts=4 sw=4 et
 au FileType make   setl sw=8 sts=8 sw=8 noexpandtab
 
 let g:AutoClosePairs = {'(': ')', '{': '}', '[': ']', '"': '"'}
@@ -142,6 +140,7 @@ imap <F10> <esc>:bd<cr>
 noremap <expr> <silent> <Home> col('.') == match(getline('.'),'\S')+1 ? '0' : '^'
 imap <silent> <Home> <C-O><Home>
 
+
 """" Plugins
 
 set rtp+=~/.local/share/vim/bundle/Vundle.vim
@@ -154,8 +153,8 @@ call vundle#begin("$HOME/.local/share/vim/bundle")
     Plugin 'SirVer/ultisnips'
     Plugin 'majutsushi/tagbar'
     Plugin 'tobyS/pdv'
-    Plugin 'fatih/vim-go'
     Plugin 'tobyS/vmustache'
+    Plugin 'fatih/vim-go'
     Plugin 'tpope/vim-fugitive'
     Plugin 'evidens/vim-twig'
     Plugin 'bling/vim-airline'
@@ -167,10 +166,18 @@ call vundle#begin("$HOME/.local/share/vim/bundle")
     Plugin 'L9'
     Plugin 'wombat256.vim'
     Plugin 'ryanoasis/vim-webdevicons'
+    Plugin 'shawncplus/phpcomplete.vim'
+    Plugin 'Shougo/vimproc'
+    Plugin 'Shougo/unite.vim'
+    Plugin 'm2mdas/phpcomplete-extended'
 call vundle#end()
 
 filetype plugin indent on
 colorscheme wombat256mod
+
+" PHP
+autocmd FileType php set omnifunc=phpcomplete_extended#CompletePHP
+set completeopt=longest,menuone
 
 " Fugutive
 set statusline=%<%f\ %h%m%r\ %b\ %{&encoding}\ 0x\ \ %{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
@@ -207,6 +214,25 @@ autocmd syntax * SpaceHi
 " Omni completion
 imap <C-F> <C-X><C-O>
 
+let g:ycm_filepath_completion_use_working_dir = 1
+let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_semantic_triggers =  {
+  \   'c' : ['->', '.'],
+  \   'objc' : ['->', '.'],
+  \   'ocaml' : ['.', '#'],
+  \   'cpp,objcpp' : ['->', '.', '::'],
+  \   'perl' : ['->'],
+  \   'php' : ['->', '::'],
+  \   'cs,java,javascript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+  \   'vim' : ['re![_a-zA-Z]+[_\w]*\.'],
+  \   'ruby' : ['.', '::'],
+  \   'lua' : ['.', ':'],
+  \   'erlang' : [':'],
+  \ }
+
+let g:phpcomplete_index_composer_command = "composer.phar dumpautoload --optimize"
+
 " Invisibles
 nmap <leader>l :set list!<CR>
 set listchars=tab:▸\ ,eol:¬
@@ -219,12 +245,4 @@ map <C-l> <Esc>:call pdv#DocumentWithSnip()<cr>
 
 " Taglist
 nmap <C-T> :TagbarToggle<CR>
-
-" Vim-Go
-let g:go_highlight_functions=1
-let g:go_highlight_methods=1
-let g:go_highlight_structs=1
-let g:go_fmt_autosave=0
-let g:go_fmt_command="goimports"
-
 

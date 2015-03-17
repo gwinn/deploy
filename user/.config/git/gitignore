@@ -1,12 +1,12 @@
-# Compiled source #
-# ##################
+Compiled source #
+###################
 *.com
 *.class
 *.dll
 *.exe
 *.o
 *.so
-*.la
+*.pyc
 
 # Packages #
 # ############
@@ -14,17 +14,13 @@
 # # git has its own built in compression methods
 *.7z
 *.dmg
-*.gz
 *.iso
-*.jar
 *.rar
 *.tar
-*.zip
 
 # # Logs and databases #
 # ######################
 *.log
-*.sql
 
 # # OS generated files #
 # ######################
@@ -32,6 +28,7 @@
 .DS_Store?
 ._*
 .bak
+*~
 .swp
 .Spotlight-V100
 .Trashes
@@ -42,9 +39,12 @@ Thumbs.db
 # IDE
 #
 .idea
-.kdev4
+*.kdev4
 .settings
 .project
 .buildpath
 *.anjuta*
+nbproject
+Debug
+*.phpcomplete_extended
 
