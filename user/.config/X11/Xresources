@@ -1,12 +1,12 @@
 Xft.authint:   true
 Xft.lcdfilter: lcddefault
-Xft.hintstyle: hintfull
+Xft.hintstyle: hintslight
 Xft.hinting:   true
 Xft.antialias: true
 Xft.dpi:       96
 Xft.rgba:      rgb
 
-Xcursor.theme: Bluecurve
+Xcursor.theme: Adwaita
 Xcursor.size:  16
 
 !------------------------------------------------------------------------------
@@ -69,3 +69,49 @@ URxvt.tabbed.tabbar-fg:  2
 URxvt.tabbed.tabbar-bg:  235
 URxvt.tabbed.tab-fg:     82
 URxvt.tabbed.tab-bg:     235
+
+
+!---- Xterm ----
+
+xterm*termName:          xterm-256color
+xterm*faceName:          Literation Mono Powerline Plus Nerd File Types Mono:size=8:antialias=true
+!xterm*font:              6x12
+xterm*dynamicColors:     true
+XTerm*locale:            true
+XTerm*metaSendsEscape:   true
+XTerm*saveLines:         4096
+XTerm*geometry:          120x35
+XTerm*letterSpace:       -2
+XTerm.saveLines:         65535
+XTerm*background:        #252525
+XTerm*foreground:        #e2e2e5
+XTerm*boldMode:          false
+XTerm*scrollColor:       #000000
+XTerm.cursorColor:       #ffffff
+XTerm*visualBell:        false
+XTerm*borderLess:        false
+XTerm*skipBuiltinGlyphs: true
+XTerm*scrollBar:         false
+XTerm*scrollBar_right:   false
+XTerm.buffered:          true
+XTerm*cursorBlink:       true
+XTerm.cursorUnderline:   true
+
+
+XTerm.color0:  rgb:25/25/25
+XTerm.color1:  rgb:CC/00/00
+XTerm.color2:  rgb:4E/9A/06
+XTerm.color3:  rgb:C4/A0/00
+XTerm.color4:  rgb:34/68/A4
+XTerm.color5:  rgb:8D/C0/63
+XTerm.color6:  rgb:06/98/9A
+XTerm.color7:  rgb:D3/D7/CF
+XTerm.color8:  rgb:55/57/53
+XTerm.color9:  rgb:EF/29/29
+XTerm.color10: rgb:8A/E2/34
+XTerm.color11: rgb:FC/E9/4F
+XTerm.color12: rgb:72/9F/CF
+XTerm.color13: rgb:AD/7F/A8
+XTerm.color14: rgb:34/E2/E2
+XTerm.color15: rgb:EE/EE/EC
+XTerm.colorBD: rgb:ff/ff/ff
