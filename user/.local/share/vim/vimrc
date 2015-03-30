@@ -166,18 +166,17 @@ call vundle#begin("$HOME/.local/share/vim/bundle")
     Plugin 'L9'
     Plugin 'wombat256.vim'
     Plugin 'ryanoasis/vim-webdevicons'
-    Plugin 'shawncplus/phpcomplete.vim'
-    Plugin 'Shougo/vimproc'
-    Plugin 'Shougo/unite.vim'
-    Plugin 'm2mdas/phpcomplete-extended'
 call vundle#end()
 
 filetype plugin indent on
 colorscheme wombat256mod
 
-" PHP
-autocmd FileType php set omnifunc=phpcomplete_extended#CompletePHP
+" Complete
 set completeopt=longest,menuone
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType python setlocal omnifunc=pythoncomplete#CompletePython
 
 " Fugutive
 set statusline=%<%f\ %h%m%r\ %b\ %{&encoding}\ 0x\ \ %{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
@@ -198,7 +197,11 @@ map <C-p> <Esc>:NERDTreeToggle<cr>
 
 " Airline
 let g:airline_powerline_fonts=1
-let g:airline_theme='wombat'
+let g:airline_theme='base16'
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
 
 " Ctags
 let Tlist_Ctags_Cmd = "/usr/bin/ctags"
@@ -231,7 +234,7 @@ let g:ycm_semantic_triggers =  {
   \   'erlang' : [':'],
   \ }
 
-let g:phpcomplete_index_composer_command = "composer.phar dumpautoload --optimize"
+" let g:phpcomplete_index_composer_command = "composer.phar dumpautoload --optimize"
 
 " Invisibles
 nmap <leader>l :set list!<CR>
