@@ -159,13 +159,13 @@ call vundle#begin("$HOME/.local/share/vim/bundle")
     Plugin 'evidens/vim-twig'
     Plugin 'bling/vim-airline'
     Plugin 'mhinz/vim-signify'
+    Plugin 'ryanoasis/vim-webdevicons'
     Plugin 'terryma/vim-multiple-cursors'
     Plugin 'vim-scripts/bufexplorer.zip'
     Plugin 'vim-scripts/spacehi.vim'
     Plugin 'vim-scripts/AutoComplPop'
     Plugin 'L9'
     Plugin 'wombat256.vim'
-    Plugin 'ryanoasis/vim-webdevicons'
 call vundle#end()
 
 filetype plugin indent on
@@ -177,6 +177,7 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType python setlocal omnifunc=pythoncomplete#CompletePython
+autocmd FileType ruby setlocal omnifunc=rubycomplete#CompleteRuby
 
 " Fugutive
 set statusline=%<%f\ %h%m%r\ %b\ %{&encoding}\ 0x\ \ %{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
