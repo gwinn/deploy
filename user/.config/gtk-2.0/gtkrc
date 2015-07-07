@@ -1,17 +1,17 @@
 style "user-font" 
 {
-	font_name="Cantarell 10"
+	font_name="Cantarell 9"
 }
 
 widget_class "*" style "user-font"
-gtk-font-name="Cantarell 10"
+gtk-font-name="Cantarell 9"
 gtk-theme-name="Adwaita"
-gtk-icon-theme-name="gnome"
+gtk-icon-theme-name="elementary"
 gtk-fallback-icon-theme="gnome"
 gtk-toolbar-style=GTK_TOOLBAR_ICONS
 gtk-menu-images=0
 gtk-button-images=0
 gtk-xft-antialias=1
 gtk-xft-hinting=1
-gtk-xft-hintstyle="hintfull"
+gtk-xft-hintstyle="slight"
 gtk-xft-rgba="rgb"
