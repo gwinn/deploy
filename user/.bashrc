@@ -56,7 +56,7 @@ alias l='ls -CF'
 alias rm='rm -rf'
 alias cp='cp -r'
 alias df='df -h -x tmpfs -x devtmpfs -x rootfs'
-alias tmux='tmux -C ~/.config/tmux.conf'
+alias tmux='tmux -f ~/.config/tmux.conf'
 alias nano="nano -AESimw"
 alias mcabber="mcabber -f ~/.config/mcabber/mcabberrc"
 alias irssi="irssi --config=~/.config/irssi/config --home=~/.config/irssi"
