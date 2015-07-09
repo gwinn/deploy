@@ -17,6 +17,8 @@ export VIMINIT='let $MYVIMRC="~/.local/share/vim/vimrc" | source $MYVIMRC'
 export VAGRANT_HOME=$HOME/.local/share/vagrant
 export VAGRANT_DEFAULT_PROVIDER=virtualbox
 export GOPATH=$HOME/Sources/go
+export JAVA_HOME=/usr/java/latest
+export DEVASSISTANT_PATH=$HOME/.local/share/devassistant
 
 # LOCAL PATHS
 export PATH=$PATH:$GEM_HOME/bin:$GOPATH/bin:$HOME/.local/bin
