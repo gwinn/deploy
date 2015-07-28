@@ -45,6 +45,7 @@ Thumbs.db
 .buildpath
 *.anjuta*
 nbproject
+*.komodoproject
 Debug
 *.phpcomplete_extended
 
