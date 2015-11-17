@@ -46,3 +46,5 @@ export __GL_YIELD="USLEEP"
 export DEBEMAIL="alex@lushpai.org"
 export DEBFULLNAME="Alex Lushpai"
 
+# Aliases
+alias pdepend='pdepend --configuration=/home/gwinn/.config/pdepend/pdepend.xml'

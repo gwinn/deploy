@@ -1,6 +1,6 @@
 [user]
     name = Alex Lushpai
-    email = alex@lushpai.org
+    email = lushpai@gmail.com
 [core]
     editor = vim
     excludesfile = /home/gwinn/.config/git/gitignore

@@ -62,6 +62,7 @@ alias mcabber="mcabber -f ~/.config/mcabber/mcabberrc"
 alias irssi="irssi --config=~/.config/irssi/config --home=~/.config/irssi"
 alias mocp="mocp -M ~/.local/share/moc -m ~/Documents/Music/ -T /usr/share/moc/themes/darkdot_theme"
 alias symfony='php -d memory_limit=256M app/console'
+alias pdepend='pdepend --configuration=/home/gwinn/.config/pdepend/pdepend.xml'
 
 if [ -f /etc/php5/fpm/php.ini ]; then
   alias phs='php -S localhost:8888 -c /etc/php5/fpm/php.ini'

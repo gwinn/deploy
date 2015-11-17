@@ -3,7 +3,7 @@ if has('gui_running')
   set lines=56 columns=165
   set guioptions+=LlRrb
   set guioptions-=LlRrb
-  set guifont=Liberation\ Mono\ for\ Powerline\ 8
+  set guifont=Fira\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types\ 10
   set guioptions-=T
   set guioptions-=m
   map  <silent>  <S-Insert>  "+p
@@ -54,6 +54,10 @@ set viminfo^=!
 set wildmenu
 set wcm=<Tab>
 set clipboard=unnamedplus,unnamed
+
+nnoremap <F3> :set invpaste paste?<CR>
+set pastetoggle=<F3>
+set showmode
 
 """"""""" Cursor & coloring
 set t_Co=256
@@ -166,6 +170,8 @@ call vundle#begin("$HOME/.local/share/vim/bundle")
     Plugin 'vim-scripts/AutoComplPop'
     Plugin 'L9'
     Plugin 'wombat256.vim'
+    Plugin 'vim-scripts/proton'
+    Plugin 'vim-scripts/pyte'
 call vundle#end()
 
 filetype plugin indent on
@@ -198,7 +204,7 @@ map <C-p> <Esc>:NERDTreeToggle<cr>
 
 " Airline
 let g:airline_powerline_fonts=1
-let g:airline_theme='base16'
+let g:airline_theme='wombat'
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
@@ -221,21 +227,20 @@ imap <C-F> <C-X><C-O>
 let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_semantic_triggers =  {
   \   'c' : ['->', '.'],
   \   'objc' : ['->', '.'],
   \   'ocaml' : ['.', '#'],
   \   'cpp,objcpp' : ['->', '.', '::'],
   \   'perl' : ['->'],
-  \   'php' : ['->', '::'],
+  \   'php' : ['->', '::', '\'],
   \   'cs,java,javascript,d,python,perl6,scala,vb,elixir,go' : ['.'],
   \   'vim' : ['re![_a-zA-Z]+[_\w]*\.'],
   \   'ruby' : ['.', '::'],
   \   'lua' : ['.', ':'],
   \   'erlang' : [':'],
   \ }
-
-" let g:phpcomplete_index_composer_command = "composer.phar dumpautoload --optimize"
 
 " Invisibles
 nmap <leader>l :set list!<CR>
