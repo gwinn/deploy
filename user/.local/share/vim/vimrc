@@ -175,7 +175,7 @@ call vundle#begin("$HOME/.local/share/vim/bundle")
 call vundle#end()
 
 filetype plugin indent on
-colorscheme wombat256mod
+" colorscheme wombat256mod
 
 " Complete
 set completeopt=longest,menuone
@@ -197,6 +197,14 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
+let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+let g:syntastic_php_phpcs_args="--standard=phpcs.xml"
+let g:syntastic_error_symbol = "✗"
+let g:syntastic_warning_symbol = "⚠"
+let g:syntastic_enable_balloons = 1
+let g:syntastic_enable_highlighting = 1
+let g:syntastic_auto_jump = 1
+
 
 " NerdTree
 let NERDTreeShowHidden = 1
