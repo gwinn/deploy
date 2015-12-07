@@ -18,6 +18,7 @@ export VAGRANT_HOME=$HOME/.local/share/vagrant
 export VAGRANT_DEFAULT_PROVIDER=virtualbox
 export GOPATH=$HOME/Sources/go
 export JAVA_HOME=/usr/java/latest
+export CMUS_HOME=$HOME/.local/share/cmus
 export DEVASSISTANT_HOME=$HOME/.local/share/devassistant
 export DEVASSISTANT_PATH=$DEVASSISTANT_HOME:/usr/share/devassistant:/usr/local/share/devassistant
 
