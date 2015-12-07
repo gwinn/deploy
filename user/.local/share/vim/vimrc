@@ -171,12 +171,15 @@ call vundle#begin("$HOME/.local/share/vim/bundle")
     Plugin 'vim-scripts/AutoComplPop'
     Plugin 'L9'
     Plugin 'wombat256.vim'
+    Plugin 'joshdick/onedark.vim'
+    Plugin 'lyxell/pride.vim'
     Plugin 'vim-scripts/proton'
     Plugin 'vim-scripts/pyte'
 call vundle#end()
 
 filetype plugin indent on
-colorscheme wombat256mod
+" colorscheme wombat256mod
+colorscheme pride
 
 " Complete
 set completeopt=longest,menuone
