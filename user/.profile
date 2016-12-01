@@ -19,6 +19,7 @@ export VAGRANT_HOME=$HOME/.local/share/vagrant
 export VAGRANT_DEFAULT_PROVIDER=virtualbox
 export GOPATH=$HOME/.local/lib/go
 export JAVA_HOME=/usr/java/latest
+export COMPlus_INTERNAL_ThreadSuspendInjection=0
 
 # LOCAL PATHS
 export PATH=$PATH:$GEM_HOME/bin:$GOPATH/bin:$HOME/.local/bin
