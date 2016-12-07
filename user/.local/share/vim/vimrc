@@ -21,6 +21,7 @@ set textwidth=79
 set ignorecase
 set lbr
 set tw=500
+set noshowmode
 set noswapfile
 set autoread
 set title
