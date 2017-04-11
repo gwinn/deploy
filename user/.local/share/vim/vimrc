@@ -153,34 +153,31 @@ set rtp+=~/.local/share/vim/bundle/Vundle.vim
 call vundle#begin("$HOME/.local/share/vim/bundle")
     Plugin 'gmarik/Vundle.vim'
     Plugin 'Valloric/YouCompleteMe'
-    Plugin 'scrooloose/nerdtree'
-    Plugin 'scrooloose/syntastic'
-    Plugin 'Xuyuanp/nerdtree-git-plugin'
-    Plugin 'SirVer/ultisnips'
-    Plugin 'majutsushi/tagbar'
-    Plugin 'tobyS/pdv'
-    Plugin 'tobyS/vmustache'
-    Plugin 'fatih/vim-go'
-    Plugin 'tpope/vim-fugitive'
-    Plugin 'evidens/vim-twig'
-    Plugin 'bling/vim-airline'
-    Plugin 'mhinz/vim-signify'
-    Plugin 'ryanoasis/vim-devicons'
-    Plugin 'terryma/vim-multiple-cursors'
+    Plugin 'vim-scripts/pyte'
     Plugin 'vim-scripts/bufexplorer.zip'
     Plugin 'vim-scripts/spacehi.vim'
     Plugin 'vim-scripts/AutoComplPop'
+    Plugin 'vim-airline/vim-airline'
+    Plugin 'vim-airline/vim-airline-themes'
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'scrooloose/syntastic'
+    Plugin 'tobyS/pdv'
+    Plugin 'tobyS/vmustache'
+    Plugin 'Xuyuanp/nerdtree-git-plugin'
+    Plugin 'SirVer/ultisnips'
+    Plugin 'majutsushi/tagbar'
+    Plugin 'fatih/vim-go'
+    Plugin 'tpope/vim-fugitive'
+    Plugin 'evidens/vim-twig'
+    Plugin 'mhinz/vim-signify'
+    Plugin 'ryanoasis/vim-devicons'
+    Plugin 'terryma/vim-multiple-cursors'
     Plugin 'L9'
-    Plugin 'wombat256.vim'
     Plugin 'joshdick/onedark.vim'
-    Plugin 'lyxell/pride.vim'
-    Plugin 'vim-scripts/proton'
-    Plugin 'vim-scripts/pyte'
 call vundle#end()
 
 filetype plugin indent on
-" colorscheme wombat256mod
-colorscheme pride
+colorscheme onedark
 
 " Complete
 set completeopt=longest,menuone
