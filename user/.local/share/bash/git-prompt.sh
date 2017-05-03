@@ -472,7 +472,7 @@ __git_ps1 ()
 		if [ -n "${GIT_PS1_SHOWDIRTYSTATE-}" ] &&
 		   [ "$(git config --bool bash.showDirtyState)" != "false" ]
 		then
-			git diff --no-ext-diff --quiet --exit-code || w="💬 "
+			git diff --no-ext-diff --quiet --exit-code || w="⚐ "
 			if [ -n "$short_sha" ]; then
 				git diff-index --cached --quiet HEAD -- || i="+"
 			else
@@ -489,7 +489,7 @@ __git_ps1 ()
 		   [ "$(git config --bool bash.showUntrackedFiles)" != "false" ] &&
 		   git ls-files --others --exclude-standard --error-unmatch -- '*' >/dev/null 2>/dev/null
 		then
-			u="${ZSH_VERSION+%}"
+			u="⚡ ${ZSH_VERSION+%}"
 		fi
 
 		if [ -n "${GIT_PS1_SHOWUPSTREAM-}" ]; then
