@@ -151,7 +151,7 @@ imap <silent> <Home> <C-O><Home>
 set rtp+=~/.local/share/vim/bundle/Vundle.vim
 
 call vundle#begin("$HOME/.local/share/vim/bundle")
-    Plugin 'gmarik/Vundle.vim'
+    Plugin 'VundleVim/Vundle.vim'
     Plugin 'Valloric/YouCompleteMe'
     Plugin 'vim-scripts/pyte'
     Plugin 'vim-scripts/bufexplorer.zip'
@@ -173,6 +173,7 @@ call vundle#begin("$HOME/.local/share/vim/bundle")
     Plugin 'ryanoasis/vim-devicons'
     Plugin 'terryma/vim-multiple-cursors'
     Plugin 'L9'
+    Plugin 'rust-lang/rust.vim'
     Plugin 'joshdick/onedark.vim'
 call vundle#end()
 

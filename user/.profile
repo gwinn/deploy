@@ -11,7 +11,7 @@ export GTK2_RC_FILES=$GTK2_RC_FILES:$HOME/.config/gtk-2.0/gtkrc
 # LIB
 export COMPOSER_HOME=$HOME/.cache/composer
 export GEMRC=$HOME/.config/gem/gemrc
-export GEM_HOME=/usr/local/lib/ruby/gems
+export GEM_HOME=$HOME/.local/lib/ruby/gems
 export GEM_SPEC_CACHE=$GEM_HOME/specs
 export MYSQL_HISTFILE=$HOME/.cache/mysql_history
 export MYSQL_HOME=$HOME/.config/mysql
@@ -19,6 +19,7 @@ export VAGRANT_HOME=$HOME/.local/share/vagrant
 export VAGRANT_DEFAULT_PROVIDER=virtualbox
 export GOPATH=$HOME/.local/lib/go
 export JAVA_HOME=/usr/java/latest
+export RUST_SRC_PATH=$HOME/.local/src/rust/src
 export COMPlus_INTERNAL_ThreadSuspendInjection=0
 
 # LOCAL PATHS
