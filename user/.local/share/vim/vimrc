@@ -175,6 +175,7 @@ call vundle#begin("$HOME/.local/share/vim/bundle")
     Plugin 'L9'
     Plugin 'rust-lang/rust.vim'
     Plugin 'joshdick/onedark.vim'
+    Plugin 'whatyouhide/vim-gotham'
 call vundle#end()
 
 filetype plugin indent on
