@@ -144,7 +144,7 @@ lain.widget.calendar({
 mpd = lain.widget.mpd({
      settings = function()
          mpd_notification_preset.fg = white
-         artist = "  " .. mpd_now.artist .. " - "
+         artist = "  ♫ " .. mpd_now.artist .. " - "
          title  = mpd_now.title  .. "  "
 
          if mpd_now.state == "pause" then
@@ -160,10 +160,24 @@ mpd = lain.widget.mpd({
 })
 
 -- shows root and home partitions percentage used
-local fsroothome = lain.widget.fs({
+local fsroot = lain.widget.fs({
+    settings  = function()
+        widget:set_text("💿 "  .. fs_now.used .. "% " )
+    end
+})
+
+local fshome = lain.widget.fs({
     settings  = function()
         local home_used = tonumber(fs_info["/home used_p"]) or 0
-        widget:set_text("rootfs " .. fs_now.used .. "% | homefs " .. home_used .. "% ")
+        widget:set_text("💿 " .. home_used .. "% ")
+    end
+})
+
+-- Memory
+
+local mem = lain.widget.mem({
+    settings = function()
+        widget:set_markup(markup.font("Play 9", " 𐁙  " .. mem_now.used .. " MB "))
     end
 })
 
@@ -301,7 +315,15 @@ awful.screen.connect_for_each_screen(function(s)
             separators.arrow_left("#1a1a1a", "alpha"),
 
             separators.arrow_left("alpha", "#363636"),
-            wibox.container.background(fsroothome.widget, "#363636"),
+            wibox.container.background(fsroot.widget, "#363636"),
+            separators.arrow_left("#363636", "alpha"),
+
+            separators.arrow_left("alpha", "#1a1a1a"),
+            wibox.container.background(fshome.widget, "#1a1a1a"),
+            separators.arrow_left("#1a1a1a", "alpha"),
+
+            separators.arrow_left("alpha", "#363636"),
+            wibox.container.background(mem.widget, "#363636"),
             separators.arrow_left("#363636", "alpha"),
 
             separators.arrow_left("alpha", "#1a1a1a"),
@@ -375,13 +397,13 @@ globalkeys = gears.table.join(
 
     -- Volume Keys
     awful.key({}, "XF86AudioLowerVolume", function ()
-      awful.util.spawn("amixer -q -D pulse sset Master 5%-", false)
+      awful.util.spawn("amixer -q -c 0 sset Master 5%-", false)
     end),
     awful.key({}, "XF86AudioRaiseVolume", function ()
-      awful.util.spawn("amixer -q -D pulse sset Master 5%+", false)
+      awful.util.spawn("amixer -q -c 0 sset Master 5%+", false)
     end),
     awful.key({}, "XF86AudioMute", function ()
-      awful.util.spawn("amixer -D pulse set Master 1+ toggle", false)
+      awful.util.spawn("amixer -q -c 0 set Master 1+ toggle", false)
     end),
 
     -- Media Keys
@@ -392,7 +414,18 @@ globalkeys = gears.table.join(
       awful.util.spawn("mpc next", false)
     end),
     awful.key({}, "XF86AudioPrev", function()
-      awful.util.spawn("mpc previous", false)
+      awful.util.spawn("mpc prev", false)
+    end),
+
+    -- Screenshots
+    awful.key({modkey }, "Print", function()
+      awful.util.spawn("scrot '%Y%m%d%H%M%S_scrot.png' -e 'mv $f ~/screenshots/'", false)
+    end),
+    awful.key({}, "Print", function()
+      awful.util.spawn("scrot '%Y%m%d%H%M%S_scrot.png' -u -e 'mv $f ~/screenshots/'", false)
+    end),
+    awful.key({modkey, "Shift"}, "Print", function()
+      awful.util.spawn_with_shell("scrot -s '%Y%m%d%H%M%s_scrot.png' -e 'mv $f ~/screenshots/'", false)
     end),
 
     -- Standard program
@@ -682,4 +715,6 @@ end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
+awful.util.spawn_with_shell("perWindowLayoutD")
 -- }}}

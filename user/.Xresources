@@ -2,7 +2,9 @@ Xft.dpi: 96
 Xft.antialias: true
 Xft.rgba: rgb
 Xft.hinting: true
-Xft.hintstyle: hintslight
+Xft.hintstyle: 1
+Xft.autohint: false
+Xft.lcdfilter: 1
 !URxvt*termName: rxvt-unicode
 
 URxvt.scrollstyle: plain
