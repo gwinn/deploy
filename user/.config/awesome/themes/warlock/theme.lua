@@ -4,21 +4,19 @@
 
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
+local lain = require("lain")
 local dpi = xresources.apply_dpi
-
 local gfs = require("gears.filesystem")
--- local themes_path = gfs.get_themes_dir()
 local themes_path = "~/.config/awesome/themes/"
-
 local theme = {}
 
 theme.font          = "Play 9"
 
-theme.bg_normal     = "#111111"
-theme.bg_focus      = "#111111"
-theme.bg_urgent     = "#444444"
-theme.bg_minimize   = "#111111"
-theme.bg_systray    = theme.bg_normal
+theme.bg_normal     = "#363636"
+theme.bg_focus      = "#363636"
+theme.bg_urgent     = "#363636"
+theme.bg_minimize   = "#363636"
+theme.bg_systray    = "#565656"
 
 theme.fg_normal     = "#aaaaaa"
 theme.fg_focus      = "#ffffff"
@@ -30,6 +28,13 @@ theme.border_width  = dpi(0)
 theme.border_normal = "#111111"
 theme.border_focus  = "#111111"
 theme.border_marked = "#91231c"
+
+theme.taglist_bg_focus = "#252525"
+theme.taglist_bg_empty = "#252525"
+theme.taglist_bg_occupied = "#252525"
+theme.taglist_bg_volatile = "#252525"
+
+theme.prompt_bg = "#1a1a1a"
 
 -- There are other variable sets
 -- overriding the warlock one when

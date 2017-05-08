@@ -11,7 +11,6 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 local lain = require("lain")
 local vicious = require("vicious")
-
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 -- Enable VIM help for hotkeys widget when client with matching name is opened:
 require("awful.hotkeys_popup.keys.vim")
@@ -50,6 +49,13 @@ terminal = "urxvt"
 browser = "firefox"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
+
+local markup = lain.util.markup
+local separators = lain.util.separators
+
+-- Separators
+local arrl_pre  = separators.arrow_right("alpha", "#252525")
+local arrl_post = separators.arrow_right("#252525", "alpha")
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -135,21 +141,31 @@ lain.widget.calendar({
   attach_to = {mytextclock}
 })
 
--- separator = wibox.widget({type = "textbox"})
--- separator.set_text("\f104")
-separator = wibox.widget{
-    markup = ' :: ',
-    align  = 'center',
-    valign = 'center',
-    widget = wibox.widget.textbox
-}
+mpd = lain.widget.mpd({
+     settings = function()
+         mpd_notification_preset.fg = white
+         artist = "  " .. mpd_now.artist .. " - "
+         title  = mpd_now.title  .. "  "
 
-separator_right = wibox.widget{
-    markup = ' ',
-    align  = 'center',
-    valign = 'center',
-    widget = wibox.widget.textbox
-}
+         if mpd_now.state == "pause" then
+             artist = "mpd "
+             title  = "paused "
+         elseif mpd_now.state == "stop" then
+             artist = ""
+             title  = ""
+         end
+
+         widget:set_markup(markup.font("Play 9", markup("#f0f0f0", artist) .. markup("#f0f0f0", title)))
+     end
+})
+
+-- shows root and home partitions percentage used
+local fsroothome = lain.widget.fs({
+    settings  = function()
+        local home_used = tonumber(fs_info["/home used_p"]) or 0
+        widget:set_text("rootfs " .. fs_now.used .. "% | homefs " .. home_used .. "% ")
+    end
+})
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -250,7 +266,11 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
 
     -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
+    s.mytasklist = awful.widget.tasklist(
+      s,
+      awful.widget.tasklist.filter.currenttags,
+      tasklist_buttons
+    )
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s })
@@ -261,16 +281,38 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             mylauncher,
-            separator_right,
+            separators.arrow_right("alpha", "#252525"),
             s.mytaglist,
+            separators.arrow_right("#252525", "alpha"),
+            separators.arrow_right("alpha", "#1a1a1a"),
             s.mypromptbox,
+            separators.arrow_right("#1a1a1a", "alpha"),
         },
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            wibox.widget.systray(), separator,
-            mykeyboardlayout, separator,
-            mytextclock,
+
+            separators.arrow_left("alpha", "#363636"),
+            wibox.container.background(wibox.widget.systray(), "#363636"),
+            separators.arrow_left("#363636", "alpha"),
+
+            separators.arrow_left("alpha", "#1a1a1a"),
+            wibox.container.background(mpd.widget, "#1a1a1a"),
+            separators.arrow_left("#1a1a1a", "alpha"),
+
+            separators.arrow_left("alpha", "#363636"),
+            wibox.container.background(fsroothome.widget, "#363636"),
+            separators.arrow_left("#363636", "alpha"),
+
+            separators.arrow_left("alpha", "#1a1a1a"),
+            wibox.container.background(mykeyboardlayout, "#1a1a1a"),
+            separators.arrow_left("#1a1a1a", "alpha"),
+
+            separators.arrow_left("alpha", "#363636"),
+            wibox.container.background(mytextclock, "#363636"),
+            separators.arrow_left("#363636", "alpha"),
+
+            separators.arrow_left("alpha", "#1a1a1a"),
             s.mylayoutbox,
         },
     }
@@ -344,13 +386,13 @@ globalkeys = gears.table.join(
 
     -- Media Keys
     awful.key({}, "XF86AudioPlay", function()
-      awful.util.spawn("playerctl play-pause", false)
+      awful.util.spawn("mpc toggle", false)
     end),
     awful.key({}, "XF86AudioNext", function()
-      awful.util.spawn("playerctl next", false)
+      awful.util.spawn("mpc next", false)
     end),
     awful.key({}, "XF86AudioPrev", function()
-      awful.util.spawn("playerctl previous", false)
+      awful.util.spawn("mpc previous", false)
     end),
 
     -- Standard program

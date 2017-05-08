@@ -3,6 +3,7 @@ Xft.antialias: true
 Xft.rgba: rgb
 Xft.hinting: true
 Xft.hintstyle: hintslight
+!URxvt*termName: rxvt-unicode
 
 URxvt.scrollstyle: plain
 URxvt.scrollBar: false
@@ -15,7 +16,7 @@ URxvt.letterSpace: 0
 URxvt*saveLines: 10000
 URxvt.cursorBlink: true
 URxvt.cursorUnderline: true
-URxvt*skipBuiltinGlyphs: true
+!URxvt*skipBuiltinGlyphs: true
 
 ! Background color
 URxvt*background: gray10
