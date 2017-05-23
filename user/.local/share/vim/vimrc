@@ -152,18 +152,16 @@ set rtp+=~/.local/share/vim/bundle/Vundle.vim
 
 call vundle#begin("$HOME/.local/share/vim/bundle")
     Plugin 'VundleVim/Vundle.vim'
-    Plugin 'Valloric/YouCompleteMe'
-    Plugin 'vim-scripts/pyte'
+    Plugin 'Shougo/neocomplete.vim'
     Plugin 'vim-scripts/bufexplorer.zip'
     Plugin 'vim-scripts/spacehi.vim'
-    Plugin 'vim-scripts/AutoComplPop'
     Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
+    Plugin 'vim-syntastic/syntastic'
     Plugin 'scrooloose/nerdtree'
-    Plugin 'scrooloose/syntastic'
+    Plugin 'Xuyuanp/nerdtree-git-plugin'
     Plugin 'tobyS/pdv'
     Plugin 'tobyS/vmustache'
-    Plugin 'Xuyuanp/nerdtree-git-plugin'
     Plugin 'SirVer/ultisnips'
     Plugin 'majutsushi/tagbar'
     Plugin 'fatih/vim-go'
@@ -172,9 +170,9 @@ call vundle#begin("$HOME/.local/share/vim/bundle")
     Plugin 'mhinz/vim-signify'
     Plugin 'ryanoasis/vim-devicons'
     Plugin 'terryma/vim-multiple-cursors'
-    Plugin 'L9'
-    Plugin 'rust-lang/rust.vim'
     Plugin 'joshdick/onedark.vim'
+    "Plugin 'L9'
+    "Plugin 'vim-scripts/AutoComplPop'
 call vundle#end()
 
 filetype plugin indent on
@@ -182,11 +180,14 @@ colorscheme onedark
 
 " Complete
 set completeopt=longest,menuone
+set ofu=syntaxcomplete#Complete
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType python setlocal omnifunc=pythoncomplete#CompletePython
 autocmd FileType ruby setlocal omnifunc=rubycomplete#CompleteRuby
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Fugutive
 set statusline=%<%f\ %h%m%r\ %b\ %{&encoding}\ 0x\ \ %{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
@@ -289,23 +290,30 @@ autocmd syntax * SpaceHi
 " Omni completion
 imap <C-F> <C-X><C-O>
 
-let g:ycm_filepath_completion_use_working_dir = 1
-let g:ycm_add_preview_to_completeopt = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_semantic_triggers =  {
-  \   'c' : ['->', '.'],
-  \   'objc' : ['->', '.'],
-  \   'ocaml' : ['.', '#'],
-  \   'cpp,objcpp' : ['->', '.', '::'],
-  \   'perl' : ['->'],
-  \   'php' : ['->', '::', '\'],
-  \   'cs,java,javascript,d,python,perl6,scala,vb,elixir,go' : ['.'],
-  \   'vim' : ['re![_a-zA-Z]+[_\w]*\.'],
-  \   'ruby' : ['.', '::'],
-  \   'lua' : ['.', ':'],
-  \   'erlang' : [':'],
-  \ }
+"let g:ycm_filepath_completion_use_working_dir = 1
+"let g:ycm_add_preview_to_completeopt = 1
+"let g:ycm_autoclose_preview_window_after_completion = 1
+"let g:ycm_autoclose_preview_window_after_insertion = 1
+"let g:ycm_semantic_triggers =  {
+"  \   'c' : ['->', '.'],
+"  \   'objc' : ['->', '.'],
+"  \   'ocaml' : ['.', '#'],
+"  \   'cpp,objcpp' : ['->', '.', '::'],
+"  \   'perl' : ['->'],
+"  \   'php' : ['->', '::', '\'],
+"  \   'cs,java,javascript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+"  \   'vim' : ['re![_a-zA-Z]+[_\w]*\.'],
+"  \   'ruby' : ['.', '::'],
+"  \   'lua' : ['.', ':'],
+"  \   'erlang' : [':'],
+"  \ }
+
+" Neocomplete
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#enable_auto_select = 1
+
 
 " Invisibles
 nmap <leader>l :set list!<CR>

@@ -12,7 +12,7 @@ URxvt.scrollBar: false
 
 URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
-URxvt.font: xft:RobotoMono Nerd Font:size=8
+URxvt.font: xft:RobotoMono Nerd Font:size=9
 URxvt.allow_bold: false
 URxvt.letterSpace: 0
 URxvt*saveLines: 10000
@@ -21,7 +21,7 @@ URxvt.cursorUnderline: true
 !URxvt*skipBuiltinGlyphs: true
 
 ! Background color
-URxvt*background: gray10
+URxvt*background: gray15
 
 ! Цвет шрифта
 URxvt*foreground: white

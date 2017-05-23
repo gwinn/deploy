@@ -11,6 +11,7 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 local lain = require("lain")
 local vicious = require("vicious")
+
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 -- Enable VIM help for hotkeys widget when client with matching name is opened:
 require("awful.hotkeys_popup.keys.vim")
@@ -146,6 +147,14 @@ mpd = lain.widget.mpd({
          mpd_notification_preset.fg = white
          artist = "  ♫ " .. mpd_now.artist .. " - "
          title  = mpd_now.title  .. "  "
+
+         mpd_notification_preset.timeout = 3
+         mpd_notification_preset.text = string.format("%s\n%s", mpd_now.artist, mpd_now.title)
+         mpd_notification_preset.title = "♫ playing"
+         mpd_notification_preset.border_width = 1
+         mpd_notification_preset.border_color = "#090909"
+         mpd_notification_preset.icon = "/home/gwinn/.config/awesome/themes/warlock/music.png"
+         mpd_notification_preset.icon_size = 10
 
          if mpd_now.state == "pause" then
              artist = "mpd "
