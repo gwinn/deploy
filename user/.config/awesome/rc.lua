@@ -190,6 +190,13 @@ local mem = lain.widget.mem({
     end
 })
 
+-- Volume
+volume = lain.widget.alsa({
+    settings = function()
+      widget:set_markup(markup.font("Play 9", "🔊  "  .. volume_now.level .. "%"))
+    end
+})
+
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
                     awful.button({ }, 1, function(t) t:view_only() end),
@@ -340,8 +347,12 @@ awful.screen.connect_for_each_screen(function(s)
             separators.arrow_left("#1a1a1a", "alpha"),
 
             separators.arrow_left("alpha", "#363636"),
-            wibox.container.background(mytextclock, "#363636"),
+            wibox.container.background(volume.widget, "#363636"),
             separators.arrow_left("#363636", "alpha"),
+
+            separators.arrow_left("alpha", "#1a1a1a"),
+            wibox.container.background(mytextclock, "#1a1a1a"),
+            separators.arrow_left("#1a1a1a", "alpha"),
 
             separators.arrow_left("alpha", "#1a1a1a"),
             s.mylayoutbox,
@@ -654,6 +665,7 @@ awful.rules.rules = {
     -- Jetbrains
     { rule = { class = "jetbrains-phpstorm" }, properties = { screen = 1, tag = "dev" } },
     { rule = { class = "jetbrains-clion" }, properties = { screen = 1, tag = "dev" } },
+    { rule = { class = "sun-awt-X11-XFramePeer"}, properties = { screen = 1, tag = "dev" } },
 }
 -- }}}
 
