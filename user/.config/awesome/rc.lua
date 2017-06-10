@@ -46,7 +46,7 @@ end
 beautiful.init(awful.util.getdir("config") .. "/themes/warlock/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "urxvt"
+terminal = "xterm"
 browser = "firefox"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
@@ -157,11 +157,11 @@ mpd = lain.widget.mpd({
          mpd_notification_preset.icon_size = 10
 
          if mpd_now.state == "pause" then
-             artist = "mpd "
+             artist = "♫ "
              title  = "paused "
          elseif mpd_now.state == "stop" then
-             artist = ""
-             title  = ""
+             artist = "♫ "
+             title  = "stoped"
          end
 
          widget:set_markup(markup.font("Play 9", markup("#f0f0f0", artist) .. markup("#f0f0f0", title)))

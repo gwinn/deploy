@@ -89,3 +89,6 @@ fi
 export TERM=xterm-256color
 export PS1='\[\033[01;32m\]\[\033[01;34m\][\W]\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\]\[\033[00m\] » '
 export QUOTING_STYLE=literal
+
+echo -e -n "\x1b[\x36 q"
+
