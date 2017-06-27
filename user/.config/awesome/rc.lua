@@ -47,7 +47,7 @@ beautiful.init(awful.util.getdir("config") .. "/themes/warlock/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "xterm"
-browser = "firefox"
+browser = "google-chrome-stable"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -108,6 +108,7 @@ myawesomemenu = {
    { "manual", terminal .. " -e man awesome" },
    { "edit config", editor_cmd .. " " .. awesome.conffile },
    { "restart", awesome.restart },
+   { "lock", "dm-tool lock" },
    { "quit", function() awesome.quit() end}
 }
 
@@ -322,9 +323,9 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
 
-            separators.arrow_left("alpha", "#363636"),
-            wibox.container.background(wibox.widget.systray(), "#363636"),
-            separators.arrow_left("#363636", "alpha"),
+          --  separators.arrow_left("alpha", "#363636"),
+          --  wibox.container.background(wibox.widget.systray(), "#363636"),
+          --  separators.arrow_left("#363636", "alpha"),
 
             separators.arrow_left("alpha", "#1a1a1a"),
             wibox.container.background(mpd.widget, "#1a1a1a"),
@@ -356,6 +357,7 @@ awful.screen.connect_for_each_screen(function(s)
 
             separators.arrow_left("alpha", "#1a1a1a"),
             s.mylayoutbox,
+            wibox.container.background(wibox.widget.systray(), "#1a1a1a"),
         },
     }
 end)
@@ -656,15 +658,24 @@ awful.rules.rules = {
       }, properties = { titlebars_enabled = false }
     },
 
-    -- Firefox
+    -- Browser
     { rule = { class = "Firefox" }, properties = { screen = 2, tag = "web" } },
+    { rule = { class = "google-chrome" }, properties = { screen = 2, tag = "web", floating = false } },
+    { rule = { instance = "google-chrome" }, properties = { screen = 2, tag = "web", floating = false } },
 
     -- MPV
     { rule = { class = "mpv" }, properties = { screen = 2, tag = "media", floating = true } },
 
+    -- Caja
+    { rule = { class = "caja" }, properties = { screen = 2, tag = "mics", floating = true } },
+
     -- Jetbrains
     { rule = { class = "jetbrains-phpstorm" }, properties = { screen = 1, tag = "dev" } },
     { rule = { class = "jetbrains-clion" }, properties = { screen = 1, tag = "dev" } },
+    { rule = { class = "jetbrains-rubymine" }, properties = { screen = 1, tag = "dev" } },
+    { rule = { class = "jetbrains-idea" }, properties = { screen = 1, tag = "dev" } },
+    { rule = { class = "jetbrains-golang" }, properties = { screen = 1, tag = "dev" } },
+    { rule = { class = "jetbrains-pycharm" }, properties = { screen = 1, tag = "dev" } },
     { rule = { class = "sun-awt-X11-XFramePeer"}, properties = { screen = 1, tag = "dev" } },
 }
 -- }}}
