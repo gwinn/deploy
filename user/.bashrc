@@ -82,13 +82,18 @@ if ! shopt -oq posix; then
 fi
 
 fn_git_ps1=`type -t __git_ps1`
-if [ "$fn_git_ps1" != "function" ]; then
-  . $HOME/.local/share/bash/git-prompt.sh
+if [[ $(type -t __git_ps1) != "function" ]] || [[ $(uname -a) = *"Ubuntu"* ]]; then
+  . ~/.local/lib/bash/git-prompt.sh
 fi
 
 export TERM=xterm-256color
 export PS1='\[\033[01;32m\]\[\033[01;34m\][\W]\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\]\[\033[00m\] » '
 export QUOTING_STYLE=literal
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWSTASHSTATE=1
+export GIT_PS1_SHOWUNTRACKEDFILES=1
 
 echo -e -n "\x1b[\x36 q"
+
+if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then source /etc/profile.d/vte.sh; fi # Ubuntu Budgie END
 
