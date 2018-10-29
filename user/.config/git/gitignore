@@ -39,14 +39,14 @@ Thumbs.db
 # IDE
 #
 .idea
-*.kdev4
+.kdev4
 .settings
 .project
 .buildpath
-*.anjuta*
+.anjuta*
 nbproject
-*.komodoproject
-*.komodotools
+.komodoproject
+.komodotools
 Debug
-*.phpcomplete_extended
-
+.phpcomplete_extended
+.vscode
