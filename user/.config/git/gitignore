@@ -50,3 +50,4 @@ nbproject
 Debug
 .phpcomplete_extended
 .vscode
+.vscode/*
