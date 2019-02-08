@@ -16,13 +16,17 @@ export MYSQL_HISTFILE=$HOME/.cache/mysql_history
 export MYSQL_HOME=$HOME/.config/mysql
 export VAGRANT_HOME=$HOME/.local/share/vagrant
 export VAGRANT_DEFAULT_PROVIDER=virtualbox
-export GOPATH=$HOME/.local/lib/go
 export JAVA_HOME=/usr/java/latest
+export GOPATH=$HOME/.local/lib/go
+export KUBECONFIG=$HOME/.config/kube/config
+export DOCKER_CONFIG=$HOME/.config/docker/
+export CARGO_HOME=$HOME/.local/lib/cargo
+export RUSTUP_HOME=$HOME/.local/lib/rustup
 export RUST_SRC_PATH=$HOME/.local/src/rust/src
 export COMPlus_INTERNAL_ThreadSuspendInjection=0
 
 # LOCAL PATHS
-export PATH=$PATH:$GEM_HOME/bin:$GOPATH/bin:$HOME/.local/bin
+export PATH=$PATH:$GEM_HOME/bin:$GOPATH/bin:$CARGO_HOME/bin:$HOME/.local/bin
 
 # APPS
 export VIMINIT='let $MYVIMRC="~/.config/vimrc" | source $MYVIMRC'
