@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Name=Postman
+TryExec=/home/gwinn/.local/opt/Postman/app/Postman
+Exec=/home/gwinn/.local/opt/Postman/app/Postman
+Icon=/home/gwinn/.local/opt/Postman/app/resources/app/assets/icon.png
+Terminal=false
+StartupWMClass=Postman
+Type=Application
+Categories=Network
+X-GNOME-UsesNotifications=true
+X-Desktop-File-Install-Version=0.23

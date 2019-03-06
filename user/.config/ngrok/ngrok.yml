@@ -1,0 +1,8 @@
+console_ui: true
+console_ui_color: transparent
+log_level: info
+log_format: logfmt
+log: stdout
+region: eu
+update: true
+

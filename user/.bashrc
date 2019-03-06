@@ -58,8 +58,9 @@ alias cp='cp -r'
 alias df='df -h -x tmpfs -x devtmpfs -x rootfs'
 alias tmux='tmux -f ~/.config/tmux.conf'
 alias nano="nano -AESimw"
-alias mcabber="mcabber -f ~/.config/mcabber/mcabberrc"
-alias irssi="irssi --config=~/.config/irssi/config --home=~/.config/irssi"
+alias jenkins_test="docker-compose --no-ansi -f docker-compose-test.yml"
+#alias ngrok="ngrok -config ~/.config/ngrok/auth.yml -config ~/.config/ngrok/config.yml"
+alias code="code --extensions-dir=/home/gwinn/.local/share/vscode"
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -88,12 +89,13 @@ fi
 
 export TERM=xterm-256color
 export PS1='\[\033[01;32m\]\[\033[01;34m\][\W]\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\]\[\033[00m\] » '
-export QUOTING_STYLE=literal
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=1
 export GIT_PS1_SHOWUNTRACKEDFILES=1
+export GIT_PS1_SHOWUPSTREAM="auto"
+export GIT_PS1_DESCRIBE_STYLE="contains"
+export GIT_PS1_SHOWCOLORHINTS=1
+export QUOTING_STYLE=literal
 
 echo -e -n "\x1b[\x36 q"
-
-if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then source /etc/profile.d/vte.sh; fi # Ubuntu Budgie END
 
