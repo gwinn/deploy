@@ -1,15 +1,13 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-[[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
-
 HISTFILE="/home/gwinn/.cache/zsh_history"
 ZSH_COMPDUMP="${HOME}/.cache/zcompdump-${ZSH_VERSION}"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-eval "$(rbenv init -)"
+
 
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/gwinn/.local/share/oh-my-zsh"
+export LC_ALL=en_US.UTF-8
+export ZSH="/home/gwinn/.local/share/oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -17,7 +15,7 @@ eval "$(rbenv init -)"
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # See https://denysdovhan.com/spaceship-prompt/
 ZSH_THEME="spaceship"
-
+SPACESHIP_EXEC_TIME_SHOW=false
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
@@ -35,7 +33,7 @@ ZSH_THEME="spaceship"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+export UPDATE_ZSH_DAYS=7
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -71,9 +69,9 @@ ZSH_THEME="spaceship"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  ubuntu
   git
   github
-  dotenv
   bundler
   rake
   ruby
@@ -83,17 +81,13 @@ plugins=(
   cabal
   cargo
   composer
-  dnf
   docker-compose
   docker
-  fedora
   gem
   golang
   gulp
   node
   nvm
-  perl
-  phing
   postgres
   pyenv
   pylint
@@ -103,6 +97,7 @@ plugins=(
   rust
   symfony
   virtualenv
+  vscode
   yarn
 )
 
@@ -117,9 +112,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
+  export EDITOR='vi'
 else
-  export EDITOR='nano'
+  export EDITOR='vim'
 fi
 
 # Compilation flags
@@ -136,4 +131,17 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias code="code --extensions-dir=/home/gwinn/.local/share/vscode"
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -CF'
+alias rm='rm -rf'
+alias cp='cp -r'
+alias df='df -h -x tmpfs -x devtmpfs -x rootfs -x squashfs'
+alias tmux='tmux -f ~/.config/tmux.conf'
+alias nano="nano -AESimw"
+alias dkt="docker-compose --no-ansi -f docker-compose-test.yml"
+alias aptu="sudo apt-get clean && sudo apt update && sudo apt -y upgrade && sudo apt-get --purge -y autoremove"
+
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+eval "$(rbenv init -)"
+eval "$(pyenv init -)"

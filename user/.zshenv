@@ -1,30 +1,17 @@
 # COMMON
-export PAGER=less
-export EDITOR=nano
-
-# NVIDIA
-export __GL_SHADER_DISK_CACHE_PATH=$HOME/.cache
-export __GL_YIELD="USLEEP"
+export PAGER=most
+export EDITOR=vim
 
 # DEBIAN
-export DEBEMAIL="alex@lushpai.org"
+export DEBEMAIL="lushpai@gmail.com"
 export DEBFULLNAME="Alex Lushpai"
 
 # RC
 export GNUPGHOME=$HOME/.config/gnupg
 export GTK_RC_FILES=$GTK_RC_FILES:$HOME/.config/gtk/gtkrc
 export GTK2_RC_FILES=$GTK2_RC_FILES:$HOME/.config/gtk-2.0/gtkrc
-
-# APPS
 export VIMINIT='let $MYVIMRC="~/.config/vimrc" | source $MYVIMRC'
-export CMUS_HOME=$HOME/.local/share/cmus
-export MPLAYER_HOME=$HOME/.config/mplayer
 export GIMP2_DIRECTORY=$HOME/.local/share/gimp
-export DEVASSISTANT_HOME=$HOME/.local/share/devassistant
-export DEVASSISTANT_PATH=$DEVASSISTANT_HOME:/usr/share/devassistant:/usr/local/share/devassistant
-export ATOM_HOME=$HOME/.local/share/atom
-export KDEHOME=$HOME/.config/kde
-export KWIN_TRIPLE_BUFFER=1
 
 # LIB
 export NVM_DIR=$HOME/.local/lib/node/nvm
@@ -35,8 +22,6 @@ export RBENV_ROOT=$HOME/.local/lib/ruby/rbenv
 export PYENV_ROOT=$HOME/.local/lib/python/pyenv
 export MYSQL_HISTFILE=$HOME/.cache/mysql_history
 export MYSQL_HOME=$HOME/.config/mysql
-export VAGRANT_HOME=$HOME/.local/share/vagrant
-export VAGRANT_DEFAULT_PROVIDER=virtualbox
 export GOSRC=$HOME/.local/src/go/1.12
 export GOPATH=$HOME/.local/lib/go
 export KUBECONFIG=$HOME/.config/kube/config

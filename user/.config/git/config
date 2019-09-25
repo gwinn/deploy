@@ -4,6 +4,7 @@
 [core]
     editor = vim
     excludesfile = /home/gwinn/.config/git/gitignore
+	autocrlf = input
 [http]
     postBuffer = 209715200
 [help]
@@ -11,11 +12,11 @@
 [github]
     user = gwinn
 [diff]
-    tool = vimdiff -u /home/gwinn/.local/share/vim/vimrc
+    tool = vimdiff -u /home/gwinn/.config/vimrc
 [difftool]
     prompt = false
 [merge]
-    tool = vimdiff -u /home/gwinn/.local/share/vim/vimrc
+    tool = vimdiff -u /home/gwinn/.config/vimrc
 [mergetool]
     keepBackup = false
 [alias]
@@ -23,6 +24,7 @@
   ci = commit
   st = status
   br = branch
+  pr = remote prune origin
   hist = log --graph --date=short
   report = "log --author='Alex Lushpai' --since='4 sunday ago' --until='now' --format='%Cgreen%ci%Creset %s%Creset' --no-merges"
   type = cat-file -t
