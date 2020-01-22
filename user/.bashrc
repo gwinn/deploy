@@ -58,6 +58,7 @@ alias cp='cp -r'
 alias df='df -h -x tmpfs -x devtmpfs -x rootfs'
 alias tmux='tmux -f ~/.config/tmux.conf'
 alias nano="nano -AESimw"
+alias aptu="sudo apt-get clean && sudo apt update && sudo apt -y upgrade && sudo apt-get --purge -y autoremove"
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -81,11 +82,11 @@ fi
 
 fn_git_ps1=`type -t __git_ps1`
 if [[ $(type -t __git_ps1) != "function" ]] || [[ $(uname -a) = *"Ubuntu"* ]]; then
-  . ~/.local/lib/bash/git-prompt.sh
+  . ~/.local/lib/shell/git-prompt.sh
 fi
 
 export TERM=xterm-256color
-export PS1='\[\033[01;32m\]\[\033[01;34m\][\W]\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\]\[\033[00m\] » '
+export PS1='\[\033[01;32m\]\[\033[01;34m\]\W\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\]\[\033[00m\]\n\[\e[32m\]➜\[\e[m\] '
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=1
 export GIT_PS1_SHOWUNTRACKEDFILES=1
@@ -96,4 +97,7 @@ export QUOTING_STYLE=literal
 
 echo -e -n "\x1b[\x36 q"
 
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+eval "$(rbenv init -)"
+eval "$(pyenv init -)"
 
