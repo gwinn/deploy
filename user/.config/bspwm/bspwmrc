@@ -1,0 +1,16 @@
+#!/bin/sh
+
+bspc monitor -d I II III IV V VI VII
+
+bspc config border_width        1
+bspc config window_gap          5
+
+bspc config split_ratio          0.5
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config pointer_action1 move
+bspc config pointer_action2 resize_corner
+
+bspc rule -a Firefox desktop='^2' follon=on
+bspc rule -a Gimp desktop='^7' state=floating follow=on center=on
+bspc rule -a mpv -o desktop='^4' state=floating follow=on

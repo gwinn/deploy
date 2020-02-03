@@ -1,15 +1,4 @@
 """" General
-if has('gui_running')
-  set lines=56 columns=165
-  set guioptions+=LlRrb
-  set guioptions-=LlRrb
-  set guifont=Fira\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types\ 10
-  set guioptions-=T
-  set guioptions-=m
-  map  <silent>  <S-Insert>  "+p
-  imap <silent>  <S-Insert>  <Esc>"+pa
-endif
-
 syntax on
 filetype off
 
@@ -78,6 +67,8 @@ au FileType php    setl sw=4 sts=4 sw=4 et
 au FileType python setl sw=4 sts=4 sw=4 et
 au FileType jinja  setl sw=4 sts=4 sw=4 et
 au FileType twig  setl sw=4 sts=4 sw=4 et
+au FileType json  setl sw=2 sts=2 sw=2 et
+au FileType yaml  setl sw=2 sts=2 sw=2 et
 au FileType make   setl sw=8 sts=8 sw=8 noexpandtab
 
 let g:AutoClosePairs = {'(': ')', '{': '}', '[': ']', '"': '"'}
@@ -139,7 +130,7 @@ vmap <F10> <esc>:bd<cr>
 imap <F10> <esc>:bd<cr>
 
 " F12 - build tags
-" map <F12> :!/usr/bin/ctags -R --fields=+iaS --extra=+q .<CR>
+map <F12> :!/usr/bin/ctags -R --fields=+iaS --extra=+q .<CR>
 
 " Smart home key
 noremap <expr> <silent> <Home> col('.') == match(getline('.'),'\S')+1 ? '0' : '^'
@@ -247,7 +238,7 @@ let g:webdevicons_conceal_nerdtree_brackets = 1
 let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 let g:WebDevIconsUnicodeGlyphDoubleWidth = 0
 let g:WebDevIconsUnicodeDecorateFolderNodes = 0
-let g:DevIconsEnableFoldersOpenClose = 1
+let g:DevIconsEnableFoldersOpenClose = 0
 let g:DevIconsEnableFolderPatternMatching = 1
 
 " NERDTress File highlighting

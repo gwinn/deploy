@@ -1,0 +1,11 @@
+#! /bin/sh
+
+sxhkd &
+perWindowLayoutD &
+polybar example &
+picom -b
+dunst &
+wmname LG3D &
+setxkbmap -layout us,ru -option "grp:win_space_toggle" &
+feh --no-fehbg --bg-fill /usr/share/backgrounds/bspwm2.jpg &
+
