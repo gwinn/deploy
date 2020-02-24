@@ -1,5 +1,0 @@
-#!/bin/sh
-# Load the keyboard map.  More maps are in /usr/share/kbd/keymaps.
-if [ -x /usr/bin/loadkeys ]; then
- /usr/bin/loadkeys /usr/share/kbd/keymaps/i386/qwerty/ru-utf.map.gz
-fi

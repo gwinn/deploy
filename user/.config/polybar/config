@@ -18,8 +18,8 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #222
-background-alt = #444
+background = #121518
+background-alt = #131619
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
 foreground-alt = #555
@@ -29,11 +29,11 @@ alert = #bd2c40
 
 [bar/example]
 ;monitor = ${env:MONITOR:HDMI-1}
-width = 100%
-height = 20
-;offset-x = 1%
-;offset-y = 1%
-radius = 1.0
+width = 99.5%
+height = 22
+offset-x = 0.25%
+offset-y = 0.25%
+radius = 0.1
 fixed-center = true
 
 background = ${colors.background}
@@ -42,11 +42,11 @@ foreground = ${colors.foreground}
 line-size = 1
 line-color = #f00
 
-border-size = 2
+border-size = 1
 border-color = #00000000
 
-padding-left = 0
-padding-right = 0
+padding-left = 2
+padding-right = 2
 
 module-margin-left = 1
 module-margin-right = 1
@@ -57,7 +57,7 @@ font-2 = siji:pixelsize=9;1
 font-3 = Material Icons:style=Regular;
 font-4 = Font Awesome 5 Free:size=9:style=Solid;2
 
-modules-left = bspwm i3
+modules-left = bspwm
 modules-center = mpd
 ;modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
 modules-right = pulseaudio eth xkeyboard date powermenu
@@ -138,7 +138,7 @@ label-empty-padding = 2
 
 [module/mpd]
 type = internal/mpd
-format-online = <label-song>   <label-time>   <icon-prev>   <icon-play>   <icon-pause>   <icon-stop>   <icon-next>   <icon-random>    <icon-repeat>
+format-online = <label-song> <label-time> <icon-play> <icon-pause> <icon-stop> <icon-prev> <icon-next> <icon-random> <icon-repeat>
 
 icon-prev = 
 icon-stop = 

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+WALL=`find ~/.local/share/backgrounds -type f | shuf -n 1`
+export DISPLAY=:0.0
+feh --no-fehbg --bg-fill $WALL

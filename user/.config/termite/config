@@ -46,12 +46,12 @@ scrollbar = off
 #cursor = #dcdccc
 #cursor_foreground = #dcdccc
 
-foreground = #dcdccc
+foreground = #fefefe
 foreground_bold = #ffffff
-background = #222222
+background = #121518
 
 # 20% background transparency (requires a compositor)
-background = rgba(63, 63, 63, 0.9)
+background = rgba(18, 21, 24, 0.9)
 
 # If unset, will reverse foreground and background
 highlight = #2f2f2f
