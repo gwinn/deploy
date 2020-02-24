@@ -1,5 +1,6 @@
 * {
-    active-background: #7D826E;
+    font: "Roboto 10";
+    active-background: #121518;
     active-foreground: @foreground;
     normal-background: @background;
     normal-foreground: @foreground;
