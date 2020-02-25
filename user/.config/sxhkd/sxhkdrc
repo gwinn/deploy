@@ -121,13 +121,13 @@ super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
 XF86AudioRaiseVolume
-	amixer set Master 5%+ unmute
+	pulseaudio-ctl up 10
 
 XF86AudioLowerVolume
-	amixer set Master 5%- unmute
+	pulseaudio-ctl down 10
 
 XF86AudioMute
-	amixer set Master toggle
+	pulseaudio-ctl mute
 
 XF86AudioPlay
 	mpc toggle

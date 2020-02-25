@@ -14,6 +14,7 @@ export DEBFULLNAME="Alex Lushpai"
 export GNUPGHOME=$HOME/.config/gnupg
 export GTK_RC_FILES=$GTK_RC_FILES:$HOME/.config/gtk/gtkrc
 export GTK2_RC_FILES=$GTK2_RC_FILES:$HOME/.config/gtk-2.0/gtkrc
+export RANGER_LOAD_DEFAULT_RC=FALSE
 
 # APPS
 export VIMINIT='let $MYVIMRC="~/.config/vimrc" | source $MYVIMRC'
@@ -22,10 +23,10 @@ export KDEHOME=$HOME/.config/kde
 export KWIN_TRIPLE_BUFFER=1
 
 # LIB
-export NVM_DIR=$HOME/.local/lib/nvm
 export COMPOSER_HOME=$HOME/.local/lib/composer
 export GEMRC=$HOME/.config/gemrc
 export GEM_SPEC_CACHE=$HOME/.cache/gem/specs
+export NVM_DIR=$HOME/.local/lib/nvm
 export RBENV_ROOT=$HOME/.local/lib/rbenv
 export PYENV_ROOT=$HOME/.local/lib/pyenv
 export MYSQL_HISTFILE=$HOME/.cache/mysql_history
@@ -42,4 +43,15 @@ export COMPlus_INTERNAL_ThreadSuspendInjection=0
 export TELEBIT_PATH=~/.local/opt/telebit
 
 # LOCAL PATHS
-export PATH=$PATH:$NVM_BIN:$RBENV_ROOT/bin:$PYENV_ROOT/bin:$GOSRC/bin:$GOPATH/bin:$CARGO_HOME/bin/:$RUSTUP/bin:$COMPOSER_HOME/vendor/bin:$HOME/.local/bin
+export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$NVM_BIN
+export PATH=$PATH:$RBENV_ROOT/bin
+export PATH=$PATH:$PYENV_ROOT/bin
+export PATH=$PATH:$GOSRC/bin
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$CARGO_HOME/bin/
+export PATH=$PATH:$RUSTUP/bin
+export PATH=$PATH:$COMPOSER_HOME/vendor/bin
+
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+

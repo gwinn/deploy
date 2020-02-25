@@ -11,6 +11,9 @@ bspc config gapless_monocle      true
 bspc config pointer_action1 move
 bspc config pointer_action2 resize_corner
 
-bspc rule -a Firefox desktop='^2' follon=on
-bspc rule -a Gimp desktop='^7' state=floating follow=on center=on
-bspc rule -a mpv -o desktop='^4' state=floating follow=on
+bspc rule -a Firefox desktop='^2' follow=on
+bspc rule -a Telegram desktop='^4' state=floating follow=on center=on layer=above border=off
+bspc rule -a Skype desktop='^4' state=floating follow=on center=on layer=above border=off
+bspc rule -a mpv -o desktop='^5' state=floating follow=on
+bspc rule -a Gimp desktop='^6' state=floating follow=on center=on
+

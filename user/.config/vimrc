@@ -167,7 +167,7 @@ call vundle#begin("$HOME/.local/share/vim/bundle")
 call vundle#end()
 
 filetype plugin indent on
-colorscheme onedark
+" colorscheme onedark
 
 " Complete
 set completeopt=longest,menuone

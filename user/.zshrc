@@ -1,12 +1,13 @@
 # The following lines were added by compinstall
 autoload -Uz compinit promptinit vcs_info colors && colors
-compinit -d ~/.cache/zcompdump
 promptinit
 
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'l:|=* r:|=*' 'm:{[:lower:]}={[:upper:]}' 'r:|[._-]=** r:|=**'
 zstyle ':completion:*' rehash true
 zstyle :compinstall filename '/home/gwinn/.zshrc'
 setopt PROMPT_SUBST
+compinit -d ~/.cache/zcompdump
+
 # End of lines added by compinstall
 
 ssh_info() {
@@ -91,3 +92,7 @@ alias l='ls -CF'
 alias rm='rm -rf'
 alias cp='cp -r'
 alias df='df -h -x tmpfs -x devtmpfs -x rootfs -x squashfs'
+alias code="code --extensions-dir=~/.local/share/vscode"
+
+eval "$(rbenv init -)"
+eval "$(pyenv init -)"
