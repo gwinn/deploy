@@ -1,6 +1,8 @@
-setxkbmap -layout "us,ru" -option "grp:alt_shift_toggle,grp_led:scroll,terminate:ctrl_alt_bksp,compose:ralt" -model pc105
-#compton --config=/home/gwinn/.config/compton/comptonrc --shadow-exclude 'argb && _NET_WM_OPAQUE_REGION@:c' -b
-hsetroot -fill ~/Documents/Pictures/wallpapers/1920x1080.jpg &
-tint2 -c ~/.config/tint2/tint2rc &
-volumeicon &
-xxkb &
+setxkbmap -layout "us,ru" -option "grp:win_space_toggle,terminate:ctrl_alt_bksp,compose:ralt" -model pc105
+picom --shadow-exclude 'argb && _NET_WM_OPAQUE_REGION@:c' -b
+hsetroot -fill ~/.local/share/backgrounds/05.jpg &
+polybar example &
+#tint2 -c ~/.config/tint2/tint2rc &
+#volumeicon &
+perWindowLayoutD &
+dunst &

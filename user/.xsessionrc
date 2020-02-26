@@ -1,0 +1,4 @@
+xinput set-prop 15 325 1
+xinput set-prop 15 307 1
+xinput set-prop 15 314 1
+xinput set-prop 15 316 0.2

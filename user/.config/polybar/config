@@ -18,64 +18,51 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #121518
-background-alt = #131619
-;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
+background = #151B22
+background-alt = #262C33
+foreground = #f3f3f3
 foreground-alt = #555
 primary = #ffb52a
-secondary = #e60053
+secondary = #fa3e3e
 alert = #bd2c40
 
 [bar/example]
 ;monitor = ${env:MONITOR:HDMI-1}
-width = 99.5%
-height = 22
-offset-x = 0.25%
-offset-y = 0.25%
-radius = 0.1
+width = 100%
+height = 24
+offset-x = 0%
+offset-y = 0%
+radius = 0
 fixed-center = true
-
 background = ${colors.background}
 foreground = ${colors.foreground}
-
 line-size = 1
 line-color = #f00
-
 border-size = 1
-border-color = #00000000
-
-padding-left = 2
-padding-right = 2
-
+border-color = #000000
+padding-left = 1
+padding-right = 1
 module-margin-left = 1
 module-margin-right = 1
-
-;font-0 = fixed:pixelsize=9;1
-font-0 = "Roboto:size=9:weight=medium:antialias=true:hinting=true:hintstyle=1:lcdfilter=1;2"
-font-1 = unifont:fontformat=truetype:size=9:antialias=true;0
-font-2 = siji:pixelsize=9;1
-font-3 = Material Icons:style=Regular;
-font-4 = Font Awesome 5 Free:size=9:style=Solid;2
-font-5 = Font Awesome 5 Brands:size=9:style=Regular;2
+font-0 = FiraCode Nerd Font:size=10:style=Regular:antialias=true;0
+font-1 = unifont:fontformat=truetype:size=10:antialias=true;1
+font-2 = Material Design Icons:style=Regular;2
+font-3 = Font Awesome 5 Free Regular:style=Regular;3
+font-4 = Font Awesome 5 Free Solid:style=Solid;3
+font-5 = Font Awesome 5 Brands Regular:style=Regular;3
 
 modules-left = bspwm
-modules-center = mpd
-;modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
-modules-right = pulseaudio eth xkeyboard date powermenu
+;modules-center =
+modules-right = network pulseaudio battery xkeyboard date powermenu
 
 tray-position = right
 tray-padding = 2
-;tray-background = #0063ff
 
-;wm-restack = bspwm
+wm-restack = bspwm
 ;wm-restack = i3
-
 ;override-redirect = true
-
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
-
 ;scroll-up = i3wm-wsnext
 ;scroll-down = i3wm-wsprev
 
@@ -89,60 +76,68 @@ label = %title:0:30:...%
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
-
-format-prefix = "  "
+format-prefix = "  "
 format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
-
+format-prefix-underline = #aa1ebd
 label-layout = %layout%
-label-layout-underline = ${colors.secondary}
-
-label-indicator-padding = 2
+label-layout-underline = #aa1ebd
+label-indicator-padding = 1
 label-indicator-margin = 1
 label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.secondary}
+label-indicator-underline = #aa1ebd
 
-[module/filesystem]
-type = internal/fs
-interval = 25
+[module/battery]
+type = internal/battery
+full-at = 99
+battery = BAT0
+adapter = ADP1
+time-format = %H:%M
+format-charging = <animation-charging>  <label-charging>
+format-discharging = <animation-discharging>  <label-discharging>
+label-charging =  %percentage%%
+label-discharging = %percentage%%
+label-full =   %percentage%%
+format-full-underline = #55aa55
+format-charging-underline = #0a6cf5
+format-discharging-underline = #ff3535
 
-mount-0 = /
+; Only applies if <animation-charging> is used
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+; Framerate in milliseconds
+animation-charging-framerate = 400
 
-;label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
-label-mounted = %free%
-label-mounted-padding = 1
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-alt}
-
-label-indicator-padding = 2
-label-indicator-margin = 1
-label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.secondary}
+; Only applies if <animation-discharging> is used
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-3 = 
+animation-discharging-4 = 
+; Framerate in milliseconds
+animation-discharging-framerate = 400
 
 [module/bspwm]
 type = internal/bspwm
-
 ws-icon-0 = I;
-ws-icon-1 = II;龜
-ws-icon-2 = III;
+ws-icon-1 = II;
+ws-icon-2 = III;
 ws-icon-3 = IV;
-ws-icon-4 = V;
+ws-icon-4 = V;
 ws-icon-5 = VI;
-ws-icon-6 = VII;
-ws-icon-default = ♟
-
+ws-icon-6 = VII;
+ws-icon-default = 
 label-focused = %icon%
 label-focused-background = ${colors.background-alt}
 label-focused-underline= ${colors.primary}
 label-focused-padding = 2
-
 label-occupied = %icon%
 label-occupied-padding = 2
-
 label-urgent = %icon%
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
-
 label-empty = %icon%
 label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 2
@@ -150,7 +145,6 @@ label-empty-padding = 2
 [module/mpd]
 type = internal/mpd
 format-online = <label-song> <label-time> <icon-play> <icon-pause> <icon-stop> <icon-prev> <icon-next> <icon-random> <icon-repeat>
-
 icon-prev = 
 icon-stop = 
 icon-play = 
@@ -158,106 +152,56 @@ icon-pause = 
 icon-next = 
 icon-random = 
 icon-repeat = 
-
 label-song = 𝄞 %artist% - %title%
 label-song-maxlen = 50
 label-song-ellipsis = true
 
-[module/xbacklight]
-type = internal/xbacklight
-
-format = <label> <bar>
-label = BL
-
-bar-width = 10
-bar-indicator = |
-bar-indicator-foreground = #fff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #9f78e1
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
-
-[module/backlight-acpi]
-inherit = module/xbacklight
-type = internal/backlight
-card = intel_backlight
-
-[module/cpu]
-type = internal/cpu
-interval = 2
-format-prefix = "  "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #f90000
-label = %percentage:2%%
-
-[module/memory]
-type = internal/memory
-interval = 2
-format-prefix = "  "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
-label = %percentage_used%%
-
-[module/eth]
+[module/network]
 type = internal/network
-interface = eno1
+interface = wlo1
 interval = 3.0
-
-format-connected-underline = #55aa55
-format-connected-prefix = "  "
+format-connected-underline = #e5f06e
+format-connected-prefix = "  "
 format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = %ifname%
-
-format-disconnected-prefix = "  "
-;format-disconnected = <label-disconnected>
-format-disconnected-underline = ${self.format-connected-underline}
+label-connected = %essid%
+format-disconnected-prefix = "  "
+format-disconnected-underline = ${colors.secondary}
 label-disconnected = %ifname%
 label-disconnected-foreground = ${colors.foreground-alt}
 
 [module/date]
 type = internal/date
 interval = 5
-
 date =
 date-alt = " %d.%m.%Y"
-
 time = %H:%M
 time-alt = %H:%M:%S
-
-format-prefix = 
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
-
+format-underline = #2798c4
 label = %date% %time%
 
 [module/pulseaudio]
 type = internal/pulseaudio
-
 format-volume = <label-volume>
-format-underline = #0a6cf5
+format-volume-foreground = #0a6cf5
+format-volume-underline = #0a6cf5
 label-volume =   %percentage%%
 label-volume-foreground = ${root.foreground}
-
 label-muted = 
 label-muted-foreground = #666
+format-muted-underline = #8e8e8e
 
 [module/powermenu]
 type = custom/menu
-
 expand-right = true
-
 format-spacing = 1
-
 label-open = 
-label-open-foreground = ${colors.secondary}
+label-open-foreground = #2798c4
 label-close = 
-label-close-foreground = ${colors.secondary}
+label-close-foreground = #2798c4
 label-separator = |
 label-separator-foreground = ${colors.foreground-alt}
-
 menu-0-0 = 
 menu-0-0-exec = reboot
 menu-0-1 = 
