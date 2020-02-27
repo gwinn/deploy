@@ -51,8 +51,8 @@ font-3 = Font Awesome 5 Free Regular:style=Regular;3
 font-4 = Font Awesome 5 Free Solid:style=Solid;3
 font-5 = Font Awesome 5 Brands Regular:style=Regular;3
 
-modules-left = bspwm
-;modules-center =
+modules-left = mpd
+modules-center = bspwm
 modules-right = network pulseaudio battery xkeyboard date powermenu
 
 tray-position = right
@@ -144,7 +144,7 @@ label-empty-padding = 2
 
 [module/mpd]
 type = internal/mpd
-format-online = <label-song> <label-time> <icon-play> <icon-pause> <icon-stop> <icon-prev> <icon-next> <icon-random> <icon-repeat>
+format-online = <icon-play> <icon-pause> <icon-stop> <icon-prev> <icon-next> <icon-random> <icon-repeat> <label-song> <label-time>
 icon-prev = 
 icon-stop = 
 icon-play = 
@@ -152,7 +152,7 @@ icon-pause = 
 icon-next = 
 icon-random = 
 icon-repeat = 
-label-song = 𝄞 %artist% - %title%
+label-song =  %artist% - %title%
 label-song-maxlen = 50
 label-song-ellipsis = true
 

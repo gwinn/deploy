@@ -8,7 +8,7 @@ super + Return
 
 # i3lock
 super + l
-    i3lock -i ~/.local/share/backgrounds/38.png -p default -t -e -u
+    i3lock -i ~/.local/share/backgrounds/38.png -p default -t -e
 
 # program launcher
 alt + F2
