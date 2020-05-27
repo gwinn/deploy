@@ -57,7 +57,7 @@ alias rm='rm -rf'
 alias cp='cp -r'
 alias df='df -h -x tmpfs -x devtmpfs -x rootfs'
 alias tmux='tmux -f ~/.config/tmux.conf'
-alias nano="nano -AESimw"
+alias nano="nano -AElimw"
 alias aptu="sudo apt-get clean && sudo apt update && sudo apt -y upgrade && sudo apt-get --purge -y autoremove"
 
 # Alias definitions.

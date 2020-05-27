@@ -94,7 +94,7 @@ alias cp='cp -r'
 alias df='df -h -x tmpfs -x devtmpfs -x rootfs -x squashfs'
 alias code="code --extensions-dir=/home/gwinn/.local/share/vscode"
 alias tmux='tmux -f ~/.config/tmux.conf'
-alias nano="nano -AESimw"
+alias nano="nano -AElimw"
 alias dkt="docker-compose --no-ansi -f docker-compose-test.yml"
 alias aptu="sudo apt-get clean && sudo apt update && sudo apt -y upgrade && sudo apt-get --purge -y autoremove"
 alias mc="mc -b"
