@@ -1,6 +1,6 @@
 #!/bin/sh
 
-bspc monitor -d I II III IV V VI VII
+bspc monitor -d I II III IV V VI VII VIII IX
 
 bspc config border_width        1
 bspc config window_gap          5
@@ -11,20 +11,26 @@ bspc config gapless_monocle      true
 bspc config pointer_action1 move
 bspc config pointer_action2 resize_corner
 
-bspc rule -a Firefox desktop='^2' follow=on
-bspc rule -a firefox desktop='^2' follow=on
-bspc rule -a zoom desktop='^4' state=floating center=on layer=above border=off
-bspc rule -a TelegramDesktop desktop='^4' border=off
-bspc rule -a Skype desktop='^4' border=off
-bspc rule -a jetbrains-phpstorm desktop='^3' follow=on border=off center=on
-bspc rule -a jetbrains-goland desktop='^3' follow=on border=off center=on
-bspc rule -a jetbrains-webstorm desktop='^3' follow=on border=off center=on
-bspc rule -a jetbrains-rubymine desktop='^3' follow=on border=off center=on
-bspc rule -a jetbrains-pycharm desktop='^3' follow=on border=off center=on
-bspc rule -a jetbrains-rider desktop='^3' follow=on border=off center=on
-bspc rule -a jetbrains-clion desktop='^3' follow=on border=off center=on
-bspc rule -a mpv -o desktop='^5' state=floating follow=on
-bspc rule -a Gimp desktop='^6' state=floating follow=on center=on
+bspc rule -a termite border=off
+bspc rule -a Firefox desktop='^2' follow=on border=off
+
+bspc rule -a jetbrains-idea desktop='^3' follow=on border=off
+bspc rule -a jetbrains-phpstorm desktop='^3' center=on follow=on border=off
+bspc rule -a jetbrains-goland desktop='^3' follow=on border=off
+bspc rule -a jetbrains-webstorm desktop='^3' follow=on border=off
+bspc rule -a jetbrains-rubymine desktop='^3' follow=on border=off
+bspc rule -a jetbrains-pycharm desktop='^3' follow=on border=off
+bspc rule -a jetbrains-rider desktop='^3' follow=on border=off
+bspc rule -a jetbrains-clion desktop='^3' follow=on border=off
+
+bspc rule -a TelegramDesktop desktop='^4' follow=on border=off
+bspc rule -a Skype desktop='^5' follow=on border=off
+
+bspc rule -a Slack desktop='^4' follow=on border=off
+bspc rule -a zoom desktop='^6' state=floating center=on follow=on border=off
+
+bspc rule -a mpv -o desktop='^7' state=floating follow=on
+bspc rule -a Gimp desktop='^8' follow=on
 
 sxhkd &
 perWindowLayoutD &
