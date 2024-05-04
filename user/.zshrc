@@ -1,12 +1,26 @@
-# The following lines were added by compinstall
+HISTFILE=~/.cache/zsh/history
+HISTSIZE=10000
+SAVEHIST=10000
+SHELL_SESSIONS_DISABLE=1
+
+if type brew &>/dev/null; then
+    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+    autoload -Uz compinit promptinit vcs_info colors && colors
+    compinit -d ~/.cache/zsh/zcompdump
+    promptinit
+fi
+
+fpath=(~/.local/share/zsh/completion $fpath)
 autoload -Uz compinit promptinit vcs_info colors && colors
+compinit -d ~/.cache/zsh/zcompdump
 promptinit
 
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'l:|=* r:|=*' 'm:{[:lower:]}={[:upper:]}' 'r:|[._-]=** r:|=**'
 zstyle ':completion:*' rehash true
 zstyle :compinstall filename '/home/gwinn/.zshrc'
+zstyle ':completion::complete:*' cache-path ~/.cache/zsh/zcompcache
 setopt PROMPT_SUBST
-compinit -d ~/.cache/zcompdump
+setopt SHARE_HISTORY
 
 # End of lines added by compinstall
 
@@ -77,9 +91,6 @@ $(ssh_info)%{$fg[magenta]%}%~%u $(git_info)
 %(?.%{$fg[blue]%}.%{$fg[red]%})%(!.#.❯)%{$reset_color%} '
 
 # Lines configured by zsh-newuser-install
-HISTFILE=~/.cache/zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
 setopt appendhistory autocd notify
 bindkey -e
 # End of lines configured by zsh-newuser-install
@@ -91,13 +102,3 @@ alias la='ls -A'
 alias l='ls -CF'
 alias rm='rm -rf'
 alias cp='cp -r'
-alias df='df -h -x tmpfs -x devtmpfs -x rootfs -x squashfs'
-alias code="code --extensions-dir=/home/gwinn/.local/share/vscode"
-alias tmux='tmux -f ~/.config/tmux.conf'
-alias nano="nano -AElimw"
-alias dkt="docker-compose --no-ansi -f docker-compose-test.yml"
-alias aptu="sudo apt-get clean && sudo apt update && sudo apt -y upgrade && sudo apt-get --purge -y autoremove"
-alias mc="mc -b"
-
-eval "$(rbenv init -)"
-eval "$(pyenv init -)"

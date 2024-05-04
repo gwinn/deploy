@@ -4,19 +4,15 @@
 [core]
     editor = vim
     excludesfile = /home/gwinn/.config/git/gitignore
-	autocrlf = input
+    autocrlf = input
 [http]
     postBuffer = 209715200
 [help]
     autocorrect = true
 [github]
     user = gwinn
-[diff]
-    tool = vimdiff -u /home/gwinn/.config/vimrc
 [difftool]
     prompt = false
-[merge]
-    tool = vimdiff -u /home/gwinn/.config/vimrc
 [mergetool]
     keepBackup = false
 [alias]
@@ -50,3 +46,12 @@
     untracked = red
 [push]
     default = simple
+[pull]
+    rebase = false
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[init]
+	defaultBranch = master
