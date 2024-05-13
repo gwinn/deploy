@@ -1,3 +1,5 @@
+printf '\33c\e[3J'
+
 HISTFILE=~/.cache/zsh/history
 HISTSIZE=10000
 SAVEHIST=10000
@@ -5,9 +7,6 @@ SHELL_SESSIONS_DISABLE=1
 
 if type brew &>/dev/null; then
     FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-    autoload -Uz compinit promptinit vcs_info colors && colors
-    compinit -d ~/.cache/zsh/zcompdump
-    promptinit
 fi
 
 fpath=(~/.local/share/zsh/completion $fpath)
@@ -19,9 +18,6 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 zstyle ':completion:*' rehash true
 zstyle :compinstall filename '/home/gwinn/.zshrc'
 zstyle ':completion::complete:*' cache-path ~/.cache/zsh/zcompcache
-setopt PROMPT_SUBST
-setopt SHARE_HISTORY
-
 # End of lines added by compinstall
 
 ssh_info() {
@@ -91,14 +87,28 @@ $(ssh_info)%{$fg[magenta]%}%~%u $(git_info)
 %(?.%{$fg[blue]%}.%{$fg[red]%})%(!.#.❯)%{$reset_color%} '
 
 # Lines configured by zsh-newuser-install
-setopt appendhistory autocd notify
+setopt appendhistory autocd notify prompt_subst
+setopt share_history hist_expire_dups_first hist_ignore_dups hist_verify
 bindkey -e
+bindkey "^[[A" history-search-backward
+bindkey "^[[B" history-search-forward
 # End of lines configured by zsh-newuser-install
 
 . ~/.profile
 
+if type brew &>/dev/null; then
+    . $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    . $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
 alias ll='ls -l'
+alias lls='eza --long --colour=always --icons=always --git --octal-permissions --no-permissions --group-directories-first --total-size --all'
+alias cd='z'
 alias la='ls -A'
 alias l='ls -CF'
 alias rm='rm -rf'
 alias cp='cp -r'
+
+eval "$(fzf --zsh)"
+eval "$(zoxide init zsh)"
+
