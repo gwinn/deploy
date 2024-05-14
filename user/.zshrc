@@ -101,13 +101,15 @@ if type brew &>/dev/null; then
     . $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
-alias ll='ls -l'
-alias lls='eza --long --colour=always --icons=always --git --octal-permissions --no-permissions --group-directories-first --total-size --all'
+alias cat='bat -f --theme=zenburn'
 alias cd='z'
+alias cp='cp -r'
+alias rm='rm -rf'
+alias ls='ls -lash'
+alias ll='eza --tree --level=1 --long --colour=always --icons=always --git --octal-permissions --no-permissions --group-directories-first --total-size --all'
 alias la='ls -A'
 alias l='ls -CF'
-alias rm='rm -rf'
-alias cp='cp -r'
+alias vim='nvim'
 
 eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"

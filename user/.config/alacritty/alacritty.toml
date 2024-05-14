@@ -7,8 +7,8 @@ TERM = "xterm-256color"
 
 [window]
 startup_mode = "Maximized"
-padding.x = 10
-padding.y = 5
+padding.x = 2
+padding.y = 2
 position.x = 40
 position.y = 50
 dimensions.columns = 190
@@ -19,7 +19,7 @@ blur = true
 option_as_alt = "Both"
 
 [font]
-normal.family = "MesloLGSDZ Nerd Font Mono"
+normal.family = "MesloLGS Nerd Font"
 size = 16
 
 [selection]
@@ -28,5 +28,4 @@ save_to_clipboard = true
 [cursor]
 style.shape = "Underline"
 style.blinking = "On"
-
 
