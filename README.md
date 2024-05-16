@@ -1,5 +1,5 @@
 Deploy
 ======
 
-Configuration files for linux environment
+Configuration files for linux and mac os environment
 

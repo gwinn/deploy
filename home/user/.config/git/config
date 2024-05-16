@@ -1,0 +1,80 @@
+[user]
+	name = Alex Lushpai
+	email = lushpai@gmail.com
+[github]
+	user = gwinn
+[init]
+	defaultBranch = master
+[core]
+	editor = vim
+	pager = delta
+	autocrlf = input
+	excludesFile = /Users/alexlushpai/.config/git/ignore
+[help]
+	autocorrect = true
+[http]
+	postBuffer = 209715200
+[push]
+	default = simple
+[pull]
+	rebase = false
+[merge]
+	conflictstyle = diff3
+[diff]
+	colorMoved = default
+[difftool]
+	prompt = false
+[mergetool]
+	keepBackup = false
+[interactive]
+	diffFilter = delta --colors--only
+[delta]
+	navigate = true
+	features = decorations
+	side-by-side = true
+	hyperlinks = true
+	true-color = always
+	syntax-theme = zenburn
+[delta "decorations"]
+	commit-decoration-style = blue box
+	commit-style = raw
+	file-style = omit
+	hunk-header-decoration-style = blue box
+	hunk-header-file-style = red
+	hunk-header-line-number-style = 75
+	hunk-header-style = file line-number syntax
+[color]
+	diff = true
+	status = true
+	branch = true
+	interactive = true
+	ui = true
+[color "branch"]
+	current = 156
+	local = 156
+	remote = 173
+[color "diff"]
+	meta = 75
+	frag = 135
+	old = 209
+	new = 156
+[color "status"]
+	added = 156
+	changed = 75
+	untracked = 248
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	pr = remote prune origin
+	hist = log --graph --date=short
+	report = "log --author='Alex Lushpai' --since='4 sunday ago' --until='now' --format='%Cgreen%ci%Creset %s%Creset' --no-merges"
+	type = cat-file -t
+	dump = cat-file -p
+
