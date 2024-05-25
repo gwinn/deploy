@@ -31,7 +31,7 @@
 [delta]
 	navigate = true
 	features = decorations
-	side-by-side = true
+	side-by-side = false
 	hyperlinks = true
 	true-color = always
 	syntax-theme = zenburn
@@ -60,6 +60,7 @@
 	new = 156
 [color "status"]
 	added = 156
+	deleted = 9
 	changed = 75
 	untracked = 248
 [filter "lfs"]

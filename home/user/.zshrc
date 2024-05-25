@@ -2,7 +2,8 @@ printf '\33c\e[3J'
 
 HISTFILE=~/.cache/zsh/history
 HISTSIZE=10000
-SAVEHIST=10000
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
 SHELL_SESSIONS_DISABLE=1
 
 if type brew &>/dev/null; then
@@ -10,75 +11,46 @@ if type brew &>/dev/null; then
 fi
 
 fpath=(~/.local/share/zsh/completion $fpath)
-autoload -Uz compinit promptinit vcs_info colors && colors
+fpath=(~/.local/share/zsh/functions $fpath)
+
+autoload -Uz compinit promptinit vcs_info git_info ssh_info colors && colors
 compinit -d ~/.cache/zsh/zcompdump
+. ~/.local/share/zsh/scripts/fzf-tab/fzf-tab.plugin.zsh
 promptinit
 
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'l:|=* r:|=*' 'm:{[:lower:]}={[:upper:]}' 'r:|[._-]=** r:|=**'
 zstyle ':completion:*' rehash true
-zstyle :compinstall filename '/home/gwinn/.zshrc'
 zstyle ':completion::complete:*' cache-path ~/.cache/zsh/zcompcache
-# End of lines added by compinstall
+zstyle ':completion:*:git-checkout:*' sort false
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+zstyle ':fzf-tab:*' switch-group '<' '>'
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+zstyle ':fzf-tab:*' popup-min-size 80 15
 
-ssh_info() {
-  [[ "$SSH_CONNECTION" != '' ]] && echo '%(!.%{$fg[red]%}.%{$fg[yellow]%})%n%{$reset_color%}@%{$fg[green]%}%m%{$reset_color%}:' || echo ''
-}
+# it is an example. you can change it
+zstyle ':fzf-tab:complete:git-(add|diff|restore):*' fzf-preview \
+	'git diff $word | delta'
+zstyle ':fzf-tab:complete:git-log:*' fzf-preview \
+	'git log --color=always $word'
+zstyle ':fzf-tab:complete:git-help:*' fzf-preview \
+	'git help $word | bat -plman --color=always'
+zstyle ':fzf-tab:complete:git-show:*' fzf-preview \
+	'case "$group" in
+	"commit tag") git show --color=always $word ;;
+	*) git show --color=always $word | delta ;;
+	esac'
+zstyle ':fzf-tab:complete:git-checkout:*' fzf-preview \
+	'case "$group" in
+	"modified file") git diff $word | delta ;;
+	"recent commit object name") git show --color=always $word | delta ;;
+	*) git log --color=always $word ;;
+	esac'
 
-# Echoes information about Git repository status when inside a Git repository
-git_info() {
-
-  # Exit if not inside a Git repository
-  ! git rev-parse --is-inside-work-tree > /dev/null 2>&1 && return
-
-  # Git branch/tag, or name-rev if on detached head
-  local GIT_LOCATION=${$(git symbolic-ref -q HEAD || git name-rev --name-only --no-undefined --always HEAD)#(refs/heads/|tags/)}
-
-  local AHEAD="%{$fg[red]%}⇡NUM %{$reset_color%}"
-  local BEHIND="%{$fg[cyan]%}⇣NUM %{$reset_color%}"
-  local MERGING="%{$fg[magenta]%}⚡ ︎%{$reset_color%}"
-  local UNTRACKED="%{$fg[red]%}● %{$reset_color%}"
-  local MODIFIED="%{$fg[yellow]%}● %{$reset_color%}"
-  local STAGED="%{$fg[green]%}● %{$reset_color%}"
-
-  local -a DIVERGENCES
-  local -a FLAGS
-
-  local NUM_AHEAD="$(git log --oneline @{u}.. 2> /dev/null | wc -l | tr -d ' ')"
-  if [ "$NUM_AHEAD" -gt 0 ]; then
-    DIVERGENCES+=( "${AHEAD//NUM/$NUM_AHEAD}" )
-  fi
-
-  local NUM_BEHIND="$(git log --oneline ..@{u} 2> /dev/null | wc -l | tr -d ' ')"
-  if [ "$NUM_BEHIND" -gt 0 ]; then
-    DIVERGENCES+=( "${BEHIND//NUM/$NUM_BEHIND}" )
-  fi
-
-  local GIT_DIR="$(git rev-parse --git-dir 2> /dev/null)"
-  if [ -n $GIT_DIR ] && test -r $GIT_DIR/MERGE_HEAD; then
-    FLAGS+=( "$MERGING" )
-  fi
-
-  if [[ -n $(git ls-files --other --exclude-standard 2> /dev/null) ]]; then
-    FLAGS+=( "$UNTRACKED" )
-  fi
-
-  if ! git diff --quiet 2> /dev/null; then
-    FLAGS+=( "$MODIFIED" )
-  fi
-
-  if ! git diff --cached --quiet 2> /dev/null; then
-    FLAGS+=( "$STAGED" )
-  fi
-
-  local -a GIT_INFO
-  GIT_INFO+=( "\033[38;5;15m±" )
-  [ -n "$GIT_STATUS" ] && GIT_INFO+=( "$GIT_STATUS" )
-  [[ ${#DIVERGENCES[@]} -ne 0 ]] && GIT_INFO+=( "${(j::)DIVERGENCES}" )
-  [[ ${#FLAGS[@]} -ne 0 ]] && GIT_INFO+=( "${(j::)FLAGS}" )
-  GIT_INFO+=( "\033[38;5;15m$GIT_LOCATION%{$reset_color%}" )
-  echo "${(j: :)GIT_INFO}"
-
-}
+zstyle :compinstall filename '/home/gwinn/.zshrc'
 
 # Use ❯ as the non-root prompt character; # for root
 # Change the prompt character color if the last command had a nonzero exit code
@@ -86,13 +58,12 @@ PS1='
 $(ssh_info)%{$fg[magenta]%}%~%u $(git_info)
 %(?.%{$fg[blue]%}.%{$fg[red]%})%(!.#.❯)%{$reset_color%} '
 
-# Lines configured by zsh-newuser-install
 setopt appendhistory autocd notify prompt_subst
-setopt share_history hist_expire_dups_first hist_ignore_dups hist_verify
+setopt share_history hist_verify
+setopt hist_expire_dups_first hist_ignore_all_dups hist_save_no_dups hist_ignore_dups hist_find_no_dups hist_ignore_space
 bindkey -e
 bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
-# End of lines configured by zsh-newuser-install
 
 . ~/.profile
 
@@ -101,17 +72,23 @@ if type brew &>/dev/null; then
     . $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
-alias cat='bat -f --theme zenburn'
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
+--color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
+--color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796"
+
+alias cat='bat'
+alias less='bat'
 alias cd='z'
 alias cp='cp -r'
 alias delta='delta -s --hyperlinks --diff-so-fancy'
 alias rm='rm -rf'
 alias ls='ls -lash --color=always'
-alias ll='eza -TAlhogUm -L 1 --color=always --icons=always --git --no-permissions --group-directories-first --total-size'
+alias ll='eza -AlhogUm --color=always --icons=always --no-permissions --group-directories-first'
 alias la='ls -A --color=always'
 alias l='ls -CF --color=always'
 alias vim='nvim'
 
 eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
-
+eval "$(rbenv init -)"
