@@ -25,31 +25,11 @@ zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
-zstyle ':fzf-tab:*' switch-group '<' '>'
+zstyle ':fzf-tab:*' popup-min-size 120 50
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
-zstyle ':fzf-tab:*' popup-min-size 80 15
-
-# it is an example. you can change it
-zstyle ':fzf-tab:complete:git-(add|diff|restore):*' fzf-preview \
-	'git diff $word | delta'
-zstyle ':fzf-tab:complete:git-log:*' fzf-preview \
-	'git log --color=always $word'
-zstyle ':fzf-tab:complete:git-help:*' fzf-preview \
-	'git help $word | bat -plman --color=always'
-zstyle ':fzf-tab:complete:git-show:*' fzf-preview \
-	'case "$group" in
-	"commit tag") git show --color=always $word ;;
-	*) git show --color=always $word | delta ;;
-	esac'
-zstyle ':fzf-tab:complete:git-checkout:*' fzf-preview \
-	'case "$group" in
-	"modified file") git diff $word | delta ;;
-	"recent commit object name") git show --color=always $word | delta ;;
-	*) git log --color=always $word ;;
-	esac'
-
+zstyle ':fzf-tab:*' switch-group '<' '>'
+zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -a -1 --color=always $realpath'
 zstyle :compinstall filename '/home/gwinn/.zshrc'
 
 # Use ❯ as the non-root prompt character; # for root
@@ -75,7 +55,8 @@ fi
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
 --color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
---color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796"
+--color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796 \
+--preview='bat {}'"
 
 alias cat='bat'
 alias less='bat'
@@ -88,6 +69,7 @@ alias ll='eza -AlhogUm --color=always --icons=always --no-permissions --group-di
 alias la='ls -A --color=always'
 alias l='ls -CF --color=always'
 alias vim='nvim'
+alias ncdu='ncdu --color off -e'
 
 eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
