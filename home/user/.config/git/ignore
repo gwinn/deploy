@@ -51,3 +51,4 @@ Debug
 .phpcomplete_extended
 .vscode
 .vscode/*
+.cache

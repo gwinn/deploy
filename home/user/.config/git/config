@@ -9,7 +9,7 @@
 	editor = vim
 	pager = delta
 	autocrlf = input
-	excludesFile = /Users/alexlushpai/.config/git/ignore
+	excludesfile = ./ignore
 [help]
 	autocorrect = true
 [http]
@@ -27,14 +27,15 @@
 [mergetool]
 	keepBackup = false
 [interactive]
-	diffFilter = delta --colors--only
+    diffFilter = delta --colors--only
+[include]
+	path = ./catppuccin.gitconfig
 [delta]
-	navigate = true
-	features = decorations
+	navigate =i true
+	features = decorations catppuccin-macchiato
 	side-by-side = false
 	hyperlinks = true
 	true-color = always
-	syntax-theme = zenburn
 [delta "decorations"]
 	commit-decoration-style = blue box
 	commit-style = raw
@@ -42,7 +43,7 @@
 	hunk-header-decoration-style = blue box
 	hunk-header-file-style = red
 	hunk-header-line-number-style = 75
-	hunk-header-style = file line-number syntax
+    hunk-header-style = file line-number syntax
 [color]
 	diff = true
 	status = true
